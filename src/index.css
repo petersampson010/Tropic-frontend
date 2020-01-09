@@ -212,17 +212,30 @@ code {
 
 .search-results{
   height: 430px;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .items-list{
   height: 430px;  
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-.item{
+.plant{
   width: 32%;
   text-align: center;
 }
 
+.plant-image{
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+}
+
+.plant-image-tag{
+  margin-top: 40px;
+}
+
+.arrow{
+  display: inline;
+}

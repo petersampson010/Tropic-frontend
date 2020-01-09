@@ -26,6 +26,7 @@ export default class App extends React.Component {
         fetch(PLANTS_API)
         .then(res => res.json())
         .then(data => data.slice(num1, num2))
+        // .then(data => console.log(data))
         .then(data => this.setState({searchedPlants: data}))
     }
 
@@ -49,8 +50,7 @@ export default class App extends React.Component {
             <Router>
                 <div>
                     <Route exact path="/" render={() => <Home/>}/>
-                    <Route exact path="/search" render={() => 
-                    <SearchPage 
+                    <Route exact path="/search" render={() => <SearchPage 
                     searchFV={this.searchFV} 
                     updateSearchTerm={this.updateSearchTerm}
                     updateSearchSelection={this.updateSearchSelection}

@@ -1,15 +1,13 @@
 import React from 'react' 
+import Plant from './Plant'
 
 const SearchResults = props => {
 
+    console.log(props)
+
     return (
         <div className="items-list">
-            <div className="item">
-                {/* <img src={props.searchedPlants[0].img_url}/> */}
-                {/* <h5>{props.searchedPlants[0].name}</h5> */}
-            </div>
-            <div className="item">2st</div>
-            <div className="item">3st</div>
+            {props.searchedPlants.map(p => <Plant plant={p}/>)}
         </div>
     )
 }
