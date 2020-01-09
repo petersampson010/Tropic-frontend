@@ -47,7 +47,6 @@ export default class Plant extends React.Component {
       }
 
       toggleAttribute = attr => {
-        //   console.log(!this.state[attr])
           this.setState({attributes: {...attrObject, [attr]: true}})
       }
 

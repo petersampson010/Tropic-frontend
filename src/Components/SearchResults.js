@@ -3,7 +3,6 @@ import Plant from './Plant'
 
 const SearchResults = props => {
 
-    console.log(props)
 
     return (
         <div className="items-list">

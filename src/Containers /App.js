@@ -8,6 +8,8 @@ import ContactUs from '../Components/ContactUs'
 import MyOasis from '../Components/MyOasis'
 
 const PLANTS_API = "http://localhost:3000/plants"
+const healthTerms = ["Diabetes", "Vitamin E", "Monounsaturated Fat", "Cholesterol", "Indegestion", "Dysentry", "Vitamin C"]
+
 
 export default class App extends React.Component {
 
@@ -26,21 +28,25 @@ export default class App extends React.Component {
         fetch(PLANTS_API)
         .then(res => res.json())
         .then(data => data.slice(num1, num2))
-        // .then(data => console.log(data))
+        .then(data => this.setState({searchedPlants: data}))
+    }
+
+    filterFetch = (attr, userInput) => {
+        fetch(PLANTS_API)
+        .then(res => res.json())
+        .then(data => data.filter(pl => pl[attr].includes(userInput)))
+        .then(data => data.slice(0, 3))
         .then(data => this.setState({searchedPlants: data}))
     }
 
     searchFV = e => {
         e.preventDefault();
-        this.setState({searching: true})
+        this.filterFetch(this.state.searchSelection, e.target.plantsearch.value)
     }
 
-    updateSearchTerm = e => {
+
+    updateSearchSelection = (e, term) => {
         e.preventDefault();
-        this.setState({searchTerm: e.target.value})
-    }
-
-    updateSearchSelection = term => {
         this.setState({searchSelection: term})
     }
 
@@ -52,7 +58,6 @@ export default class App extends React.Component {
                     <Route exact path="/" render={() => <Home/>}/>
                     <Route exact path="/search" render={() => <SearchPage 
                     searchFV={this.searchFV} 
-                    updateSearchTerm={this.updateSearchTerm}
                     updateSearchSelection={this.updateSearchSelection}
                     searchedPlants={this.state.searchedPlants}/>}/>
                     <Route exact path="/login" render={() => <Login/>}/>
