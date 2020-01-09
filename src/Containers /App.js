@@ -1,13 +1,17 @@
 import React from 'react' 
 import { BrowserRouter as Router, Route } from 'react-router-dom' 
-import Home from '../Components/Home'
-import SearchPage from '../Components/SearchPage'
-import Login from '../Components/Login'
-import SignUp from '../Components/SignUp'
+import Home from '../Pages/Home'
+import SearchPage from '../Pages/SearchPage'
+import Login from '../Pages/Login'
+import SignUp from '../Pages/SignUp'
 import ContactUs from '../Components/ContactUs'
-import MyOasis from '../Components/MyOasis'
+import MyOasis from '../Pages/MyOasis'
 
 const PLANTS_API = "http://localhost:3000/plants"
+const USERS_API = "http://localhost:3000/users"
+const WISHLIST_API = "http://localhost:3000/wishlists"
+const GROWLIST_API = "http://localhost:3000/growlists"
+
 const healthTerms = ["Diabetes", "Vitamin E", "Monounsaturated Fat", "Cholesterol", "Indegestion", "Dysentry", "Vitamin C"]
 
 
@@ -16,7 +20,7 @@ export default class App extends React.Component {
     state = {
         searchTerm: null,
         searchedPlants: [],
-        searchSelection: null
+        searchSelection: null,
     }
 
     componentDidMount() {
@@ -32,9 +36,11 @@ export default class App extends React.Component {
     }
 
     filterFetch = (attr, userInput) => {
+
+        let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput)
         fetch(PLANTS_API)
         .then(res => res.json())
-        .then(data => data.filter(pl => pl[attr].includes(userInput)))
+        .then(data => data.filter(pl => pl[attr].includes(searchWord)))
         .then(data => data.slice(0, 3))
         .then(data => this.setState({searchedPlants: data}))
     }
@@ -50,6 +56,21 @@ export default class App extends React.Component {
         this.setState({searchSelection: term})
     }
 
+    addToWishlist = (e, plant) => {
+        e.preventDefault();
+        let configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({user_id: 1, plant_id: plant.id})
+        };
+        fetch(WISHLIST_API, configObj)
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
 
     render() {
         return (
@@ -59,7 +80,9 @@ export default class App extends React.Component {
                     <Route exact path="/search" render={() => <SearchPage 
                     searchFV={this.searchFV} 
                     updateSearchSelection={this.updateSearchSelection}
-                    searchedPlants={this.state.searchedPlants}/>}/>
+                    searchedPlants={this.state.searchedPlants}
+                    addToWishlist={this.addToWishlist}
+                    searchSelection={this.state.searchSelection}/>}/>
                     <Route exact path="/login" render={() => <Login/>}/>
                     <Route exact path="/signup" render={() => <SignUp/>}/>
                     <Route exact path="/contact-us" render={() => <ContactUs/>}/>
