@@ -9,7 +9,7 @@ import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons'
 import {faPepperHot } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
-import { faTractor } from '@fortawesome/free-solid-svg-icons'
+// import { faTractor } from '@fortawesome/free-solid-svg-icons'
 import { faFont } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -31,10 +31,10 @@ const SearchPage = props => {
                     <FontAwesomeIcon icon={faPepperHot} size="4x" onClick={(e) => props.updateSearchSelection(e, "uses")}/>
                     <p>Uses</p>
                 </div>
-                <div>
+                {/* <div>
                     <FontAwesomeIcon icon={faTractor} size="4x" onClick={(e) => props.updateSearchSelection(e, "propagation")}/>
                     <p>Propagation</p>
-                </div>
+                </div> */}
                 <div>
                     <FontAwesomeIcon icon={faSun} size="4x" onClick={(e) => props.updateSearchSelection(e, "climate")}/>
                     <p>Climate</p>

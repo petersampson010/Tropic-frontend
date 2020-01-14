@@ -1,14 +1,9 @@
 import React from 'react'
-import Footer from '../Components/Footer'
 
-
-const Login = props => {
+const Login = () => {
 
     return (
-        <div>
-            login
-            <Footer/>
-        </div>
+        <div>LOGIN</div>
     )
 }
 

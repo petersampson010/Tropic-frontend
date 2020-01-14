@@ -1,6 +1,7 @@
 import React from 'react' 
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 
+
 const Home = props => {
 
 
@@ -14,7 +15,7 @@ const Home = props => {
                         <NavLink to="/search">look around</NavLink>
                     </div>
                     <div className="card2">
-                        <NavLink to="/login">login</NavLink>
+                        <NavLink to="authforms">login</NavLink>
                     </div>
                     <div className="card3">
                         <NavLink to="/contact-us">contact us</NavLink>

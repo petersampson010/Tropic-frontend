@@ -1,7 +1,5 @@
 import React from 'react' 
 
-const healthTerms = ["Diabetes", "Vitamin E", "Monounsaturated Fat", "Cholesterol", "Indegestion", "Dysentry", "Vitamin C"]
-
 export default class SearchBar extends React.Component {
 
     render() {

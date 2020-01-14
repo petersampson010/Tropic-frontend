@@ -259,3 +259,64 @@ code {
   text-align: center;
   margin-top: 20%;
 }
+
+
+
+
+/* ******MYOASIS******** */
+
+
+
+
+.grow-graphic{
+  height: 400px;
+  background-color: grey;
+}
+
+.user-plants{
+  height: 370px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.currently-growing{
+  width: 60%;
+  background-color: coral;
+}
+
+.wishlist{
+  width: 35%;
+  background-color: coral;
+}
+
+.wish-item{
+  height: 40px;
+}
+
+.list-item{
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.grow-item{
+  height: 50px;
+}
+
+.propagation{
+  font-size: 13px;
+}
+
+
+.auth-forms{
+  text-align: center;
+  background-color: grey;
+  height: 40vh;
+  margin-top: 20vh;
+  margin-left: 30vw;
+  margin-bottom: 20vh;
+  margin-right: 30vw;
+  padding-top: 5vh;
+  border-radius: 7%;
+}

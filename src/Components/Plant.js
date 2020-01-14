@@ -1,24 +1,15 @@
 import React from 'react' 
 
-const attributes = ["description", "uses", "health", "climate", "soil", "propagation"]
+const attributes = ["description", "uses", "health", "climate", "soil"]
 const attrObject = {
     description: false,
     uses: false, 
     health: false, 
     climate: false, 
-    soil: false, 
-    propagation: false
+    soil: false
 }
 
 export default class Plant extends React.Component {
-
-    // constructor(props) {
-    //     super(props);
-    //     this.handleMouseHover = this.handleMouseHover.bind(this);
-    //     this.state = {
-    //         hover: false
-    //     }
-    // }
 
     constructor(props) {
         super(props);
@@ -30,8 +21,7 @@ export default class Plant extends React.Component {
                 uses: false, 
                 health: false, 
                 climate: false, 
-                soil: false, 
-                propagation: false
+                soil: false
             }
         };
       }
