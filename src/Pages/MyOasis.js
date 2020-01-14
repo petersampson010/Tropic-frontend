@@ -11,7 +11,7 @@ export default class MyOasis extends React.Component {
     render() {
         return (
             <div>
-                <NavBar user_id={this.props.user.id}/>
+                <NavBar logout={this.props.logout} user={this.props.user}/>
                 <GrowGraphic 
                 growlist={this.props.user.growlist_plants}/>
                 <UserPlants 

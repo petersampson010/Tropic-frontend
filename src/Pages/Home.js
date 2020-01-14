@@ -15,7 +15,8 @@ const Home = props => {
                         <NavLink to="/search" className="card1t">look around</NavLink>
                     </div>
                     <div className="card2">
-                        <NavLink to="authforms" className="card2t">login</NavLink>
+                        {props.user ? <p className="card2t" onClick={props.logout}>logout</p>
+                        : <NavLink to="authforms" className="card2t">login</NavLink>}
                     </div>
                     <div className="card3">
                         <NavLink to="/contact-us" className="card3t">contact us</NavLink>

@@ -11,14 +11,15 @@ import API from '../Adapters/API'
 import { PLANTS_URL, USERS_URL, LOGIN_URL, VALIDATE_URL, WISHLIST_URL, GROWLIST_URL } from '../Adapters/API'
 import { withRouter } from 'react-router-dom'
 
-class App extends React.Component {
 
+class App extends React.Component {
+    
     state = {
         searchTerm: null,
         searchedPlants: [],
         searchSelection: null,
         error: "",
-        user: {},
+        user: false,
     }
 
     componentDidMount() {
@@ -59,7 +60,7 @@ class App extends React.Component {
             .then(plant => this.setState({
                 user: {
                     ...this.state.user,
-                    wishlist_plants: plant
+                    wishlist_plants: [...this.state.user.wishlist_plants, plant]
                 }
             }))
     }
@@ -69,7 +70,8 @@ class App extends React.Component {
             .then(plant => this.setState({
                 user: {
                     ...this.state.user,
-                    growlist_plants: plant
+                    growlist_plants: [...this.state.user.growlist_plants, plant]
+                    // growlist_plants: (this.state.user.growlist_plants.length === 0 ? [plant] : [...this.state.user.growlist_plants, plant])
                 }
             }))
     }
@@ -94,6 +96,12 @@ class App extends React.Component {
     }
 
 
+    logout = () => {
+        this.setState({user: false});
+        localStorage.removeItem("token")
+    }
+
+
 
     render() {
 
@@ -109,8 +117,11 @@ class App extends React.Component {
 
         return (
             <>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" render={() => <Home 
+                user={this.state.user} 
+                logout={this.logout}/>}/>
                 <Route exact path="/search" render={() => <SearchPage
+                    logout={this.logout}
                     user={this.state.user}
                     searchFV={this.searchFV}
                     updateSearchSelection={this.updateSearchSelection}
@@ -124,6 +135,7 @@ class App extends React.Component {
                 <Route exact path="/signup" render={() => <SignUp />} />
                 <Route exact path="/contact-us" render={() => <ContactUs />} />
                 <Route exact path="/my-oasis" render={() => <MyOasis
+                    logout={this.logout}
                     user={this.state.user}
                     addToGrowlist={this.addToGrowlist}
                     deleteFromWishlist={this.deleteFromWishlist} />}/>

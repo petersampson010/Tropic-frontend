@@ -3,7 +3,7 @@ import React from 'react'
 const GrowItem = props => {
     return (
         <div className="grow-item">
-            {props.plant.plant.name}
+            {props.plant.name}
         </div>
     )
 }

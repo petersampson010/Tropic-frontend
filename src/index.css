@@ -206,13 +206,13 @@ code {
   display: flex;
   justify-content: space-around;
   height: 20%;
-  background-color: black;
+  background-color: orange;
   padding-top: 5vh;
   text-align: center;
 }
 
 .svg-inline--fa:hover{
-  background-color: orange;
+  background-color: teal
 }
 
 .search-box{
@@ -297,17 +297,21 @@ code {
 }
 
 .currently-growing{
-  width: 60%;
+  width: 33%;
   background-color: coral;
 }
 
 .wishlist{
-  width: 35%;
+  width: 65%;
   background-color: coral;
+  bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 .wish-item{
-  height: 40px;
+  height: 90px;
 }
 
 .list-item{

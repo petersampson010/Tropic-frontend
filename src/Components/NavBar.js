@@ -9,8 +9,7 @@ class NavBar extends React.Component {
         let inLinks = [
             {name: 'Home', route: '/'},
             {name: 'Search', route: '/search'},
-            {name: 'My Oasis', route: '/my-oasis'},
-            {name: 'Logout', route: '/'}
+            {name: 'My Oasis', route: '/my-oasis'}
         ]
 
         let outLinks = [
@@ -19,7 +18,7 @@ class NavBar extends React.Component {
             {name: 'Login', route: '/authforms'}
         ]
 
-        let links = this.props.user_id === null ? outLinks : inLinks
+        let links = (this.props.user ? inLinks : outLinks)
 
         const { history } = this.props
 
@@ -31,6 +30,11 @@ class NavBar extends React.Component {
             );
         });
 
+        const func = () => {
+            history.push('/');
+            this.props.logout()
+        }
+
         return (
             <nav className="nav-menu">
                 <div className="nav-logo"></div>
@@ -38,6 +42,9 @@ class NavBar extends React.Component {
                 <div className="nav-menu-right">
                     <ul className="nav-menu-list">
                         {navLinks}
+                        <li key="4" className="nav-list-item">
+                            {this.props.user ? <p className="nav-link" onClick={func}>Logout</p> : null}
+                        </li>
                     </ul>
                 </div>
             </nav>

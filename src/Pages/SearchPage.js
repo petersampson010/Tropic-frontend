@@ -16,7 +16,7 @@ const SearchPage = props => {
 
     return (
         <div className="search-page">
-            <NavBar user_id={props.user_id}/>
+            <NavBar logout={props.logout} user={props.user}/>
             <div className="search-items">
                 <div>
                     <FontAwesomeIcon icon={faHeartbeat} size="4x" onClick={(e) => props.updateSearchSelection(e, "health")}/>

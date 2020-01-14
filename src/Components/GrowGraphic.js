@@ -5,7 +5,9 @@ const GrowGraphic = props => {
 
     return (
         <div className="grow-graphic">
-            {props.growlist.map(g => <Grow plant={g.plant}/>)}
+
+            HUGE FUCK OFF PICTURE??
+            {/* {props.growlist.map(p => <Grow plant={p}/>)} */}
         </div>
     )
 }
