@@ -12,13 +12,13 @@ const Home = props => {
                 <h3 className="slogan">The brighter side of fruit and veg</h3>
                 <div className="home-options">
                     <div className="card1">
-                        <NavLink to="/search">look around</NavLink>
+                        <NavLink to="/search" className="card1t">look around</NavLink>
                     </div>
                     <div className="card2">
-                        <NavLink to="authforms">login</NavLink>
+                        <NavLink to="authforms" className="card2t">login</NavLink>
                     </div>
                     <div className="card3">
-                        <NavLink to="/contact-us">contact us</NavLink>
+                        <NavLink to="/contact-us" className="card3t">contact us</NavLink>
                     </div>
                 </div>
             </div>

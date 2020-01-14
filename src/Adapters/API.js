@@ -5,7 +5,10 @@ export const VALIDATE_URL = "http://localhost:3000/users/validate_user"
 export const WISHLIST_URL = "http://localhost:3000/wishlists"
 export const GROWLIST_URL = "http://localhost:3000/growlists"
 
-const jsonify = res => res.json()
+const jsonify = res => {
+    if (!res.ok) throw {error: 'something went wrong'}
+    return res.json()
+}
 
 const login = loginData => {
     return fetch(LOGIN_URL, {
@@ -17,12 +20,26 @@ const login = loginData => {
         body: JSON.stringify({ user: loginData })
     })
     .then(jsonify)
-    // .then(user => { console.log(user); return user })
     .then(data => {
         localStorage.setItem("token", data.token);
         return data.user;
     });
 }
+
+const updateList = (e, plant, user, list) => {
+    e.preventDefault();
+    let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({ user_id: user.id, plant_id: plant.id })
+    };
+    return fetch(list, configObj)
+    .then(res => res.json())
+}
+
 
 
 
@@ -71,5 +88,5 @@ export default {
     login, 
     signUp,
     validateUser,
-    // postPost
+    updateList
 }

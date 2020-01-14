@@ -6,21 +6,20 @@ import UserPlants from '../Components/UserPlants'
 
 
 
-const MyOasis = props => {
+export default class MyOasis extends React.Component {
 
-    return (
-        <div>
-            <NavBar/>
-            <GrowGraphic 
-            growlist={props.growlist}/>
-            <UserPlants 
-            growlist={props.growlist}
-            wishlist={props.wishlist}
-            addToGrowlist={props.addToGrowlist}
-            deleteFromWishlist={props.deleteFromWishlist}/>
-            <Footer/>
-        </div>
-    )
+    render() {
+        return (
+            <div>
+                <NavBar user_id={this.props.user.id}/>
+                <GrowGraphic 
+                growlist={this.props.user.growlist_plants}/>
+                <UserPlants 
+                user={this.props.user}
+                addToGrowlist={this.props.addToGrowlist}
+                deleteFromWishlist={this.props.deleteFromWishlist}/>
+                <Footer/>
+            </div>
+        )
+    }
 }
-
-export default MyOasis

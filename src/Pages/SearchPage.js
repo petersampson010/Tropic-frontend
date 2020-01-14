@@ -9,7 +9,6 @@ import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons'
 import {faPepperHot } from '@fortawesome/free-solid-svg-icons'
 import { faSun } from '@fortawesome/free-solid-svg-icons'
-// import { faTractor } from '@fortawesome/free-solid-svg-icons'
 import { faFont } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -17,7 +16,7 @@ const SearchPage = props => {
 
     return (
         <div className="search-page">
-            <NavBar/>
+            <NavBar user_id={props.user_id}/>
             <div className="search-items">
                 <div>
                     <FontAwesomeIcon icon={faHeartbeat} size="4x" onClick={(e) => props.updateSearchSelection(e, "health")}/>

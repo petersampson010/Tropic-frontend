@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react' 
-import { BrowserRouter as Router, Route } from 'react-router-dom' 
-import { Redirect } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from '../Pages/Home'
 import SearchPage from '../Pages/SearchPage'
 import SignUp from '../Pages/SignUp'
@@ -10,43 +9,38 @@ import AuthForms from '../Pages/AuthForms'
 import PostForms from '../PostForm'
 import API from '../Adapters/API'
 import { PLANTS_URL, USERS_URL, LOGIN_URL, VALIDATE_URL, WISHLIST_URL, GROWLIST_URL } from '../Adapters/API'
+import { withRouter } from 'react-router-dom'
 
-export default class App extends React.Component {
+class App extends React.Component {
 
     state = {
-        user_id: 1,
         searchTerm: null,
         searchedPlants: [],
         searchSelection: null,
-        wishlist: [],
-        growlist: [], 
-        username: null,
         error: "",
-        pageURL: ""
+        user: {},
     }
 
     componentDidMount() {
         let rand = Math.floor(Math.random() * 97);
-        this.fetchPlants(rand, rand+3);
-        this.updateWishlist();
-        this.updateGrowlist();
+        this.fetchPlants(rand, rand + 3);
     }
 
     fetchPlants = (num1, num2) => {
         fetch(PLANTS_URL)
-        .then(res => res.json())
-        .then(data => data.slice(num1, num2))
-        .then(data => this.setState({searchedPlants: data}))
+            .then(res => res.json())
+            .then(data => data.slice(num1, num2))
+            .then(data => this.setState({ searchedPlants: data }))
     }
 
     filterFetch = (attr, userInput) => {
 
         let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput)
         fetch(PLANTS_URL)
-        .then(res => res.json())
-        .then(data => data.filter(pl => pl[attr].includes(searchWord)))
-        .then(data => data.slice(0, 3))
-        .then(data => this.setState({searchedPlants: data}))
+            .then(res => res.json())
+            .then(data => data.filter(pl => pl[attr].includes(searchWord)))
+            .then(data => data.slice(0, 3))
+            .then(data => this.setState({ searchedPlants: data }))
     }
 
     searchFV = e => {
@@ -57,51 +51,27 @@ export default class App extends React.Component {
 
     updateSearchSelection = (e, term) => {
         e.preventDefault();
-        this.setState({searchSelection: term})
+        this.setState({ searchSelection: term })
     }
 
     addToWishlist = (e, plant) => {
-        e.preventDefault();
-        let configObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({user_id: 1, plant_id: plant.id})
-        };
-        fetch(WISHLIST_URL, configObj)
-        .then(res => res.json())
-        .then(data => this.updateWishlist())
-    }
-
-    updateWishlist = () => {
-        fetch(USERS_URL)
-        .then(res => res.json())
-        .then(data => data.filter(u => u.id === this.state.user_id))
-        .then(data => this.setState({wishlist: data[0].wishlists}))
+        API.updateList(e, plant, this.state.user, WISHLIST_URL)        
+            .then(plant => this.setState({
+                user: {
+                    ...this.state.user,
+                    wishlist_plants: plant
+                }
+            }))
     }
 
     addToGrowlist = (e, plant) => {
-        e.preventDefault();
-        let configObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({user_id: 1, plant_id: plant.id})
-        };
-        fetch(GROWLIST_URL, configObj)
-        .then(res => res.json())
-        .then(data => this.updateGrowlist())
-    }
-
-    updateGrowlist = () => {
-        fetch(USERS_URL)
-        .then(res => res.json())
-        .then(data => data.filter(u => u.id === this.state.user_id))
-        .then(data => this.setState({growlist: data[0].growlists}))
+        API.updateList(e, plant, this.state.user, GROWLIST_URL)
+            .then(plant => this.setState({
+                user: {
+                    ...this.state.user,
+                    growlist_plants: plant
+                }
+            }))
     }
 
     deleteFromWishlist = (e, wish) => {
@@ -110,57 +80,56 @@ export default class App extends React.Component {
             method: "DELETE"
         }
         fetch(`${WISHLIST_URL}/${wish.id}`, configObj)
-        .then(data => this.updateWishlist())
+            .then(this.setState({user: {...this.state.user, 
+                wishlist_plants: this.state.user.wishlist_plants.filter(p => p.id !== wish.plant_id)}
+            }))
     }
 
-    setUser = (loginData) => {
-        // console.log(this.props.history)
-        if (localStorage.getItem("token") !== "undefined") {
-            this.setState({username: loginData, pageURL: "my-oasis"});
-        } else {
-            this.setState({error: "username or password incorrect, please try again or sign up"})
-        }
+
+    setUser = (user) => {
+        const { history } = this.props
+        this.setState({
+            user
+        }, () => history.push('/my-oasis'))
     }
-    
+
 
 
     render() {
 
-        // useEffect(() => {
-        //     API.validateUser()
-        //     .then(user => this.setState({user_id: user.id}))
-        //     .catch(console.error)
-        // }, [])
-    
         const handleLogin = loginData => {
-            API.login(loginData).then(() => this.setUser(loginData.username))
+            API.login(loginData)
+                .then(this.setUser)
+                .catch(console.error)
         }
-    
+
         const handleSignUp = signUpData => {
-            
+
         }
 
         return (
-            <Router>
-                <div>
-                    <Redirect push to={this.state.pageURL}/>
-                    <Route exact path="/" render={() => <Home/>}/>
-                    <Route exact path="/search" render={() => <SearchPage 
-                    searchFV={this.searchFV} 
+            <>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/search" render={() => <SearchPage
+                    user={this.state.user}
+                    searchFV={this.searchFV}
                     updateSearchSelection={this.updateSearchSelection}
                     searchedPlants={this.state.searchedPlants}
                     addToWishlist={this.addToWishlist}
-                    searchSelection={this.state.searchSelection}/>}/>
-                    <Route exact path='/authforms' render={() => <AuthForms error={this.state.error} login={handleLogin} signUp={handleSignUp}/>}/>
-                    <Route exact path="/signup" render={() => <SignUp/>}/>
-                    <Route exact path="/contact-us" render={() => <ContactUs/>}/>
-                    <Route exact path="/my-oasis" render={() => <MyOasis
-                    growlist={this.state.growlist}
-                    wishlist={this.state.wishlist}
+                    searchSelection={this.state.searchSelection} />}/>
+                <Route exact path='/authforms' render={() => <AuthForms 
+                    error={this.state.error} 
+                    login={handleLogin} 
+                    signUp={handleSignUp} />} />
+                <Route exact path="/signup" render={() => <SignUp />} />
+                <Route exact path="/contact-us" render={() => <ContactUs />} />
+                <Route exact path="/my-oasis" render={() => <MyOasis
+                    user={this.state.user}
                     addToGrowlist={this.addToGrowlist}
-                    deleteFromWishlist={this.deleteFromWishlist}/>}/>
-                </div>
-            </Router>
+                    deleteFromWishlist={this.deleteFromWishlist} />}/>
+            </>
         )
     }
 }
+
+export default withRouter(App)

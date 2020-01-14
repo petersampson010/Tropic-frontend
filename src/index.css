@@ -72,12 +72,18 @@ code {
   float: left;
   margin: 5%;
   padding-top: 7.5%;
+  font-size: 20px;
 }
 
 .card1{
-  color: red;
   background-image: url('./images/pomegranate.jpg');
   background-size: cover;
+  color: white;
+}
+
+.card1t{
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 .card2{
@@ -86,10 +92,20 @@ code {
   background-size: cover;
 }
 
+.card2t{
+  text-decoration: none;
+  color: blue;
+}
+
 .card3{
   color: red;
   background-image: url('./images/floppy-leaves.jpg');
   background-size: cover;
+}
+
+.card3t{
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 

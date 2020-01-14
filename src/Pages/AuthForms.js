@@ -27,6 +27,7 @@ const AuthForms = ({ login, signUp, error }) => {
     e.preventDefault();
     signUp(signupData);
   };
+  
   return (
     <div className="auth-forms">
       <form onSubmit={handleLoginSubmit}>

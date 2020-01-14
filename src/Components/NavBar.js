@@ -1,23 +1,32 @@
 import React from 'react' 
+import { withRouter } from 'react-router-dom'
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
 
-    render
 
     render() {
-        
 
-        let links = [
-            { name: 'Home', route: '/' },
-            { name: 'Search', route: '/search' },
-            { name: 'My Oasis', route: '/my-oasis' }
+        let inLinks = [
+            {name: 'Home', route: '/'},
+            {name: 'Search', route: '/search'},
+            {name: 'My Oasis', route: '/my-oasis'},
+            {name: 'Logout', route: '/'}
         ]
 
+        let outLinks = [
+            {name: 'Home', route: '/'},
+            {name: 'Search', route: '/search'},
+            {name: 'Login', route: '/authforms'}
+        ]
+
+        let links = this.props.user_id === null ? outLinks : inLinks
+
+        const { history } = this.props
 
         let navLinks = links.map((link, index) => {
             return (
                 <li key={index} className="nav-list-item">
-                    <a className="nav-link" href={link.route}>{link.name}</a>
+                    <p className="nav-link" onClick={() => history.push(link.route)}>{link.name}</p>
                 </li>
             );
         });
@@ -36,3 +45,5 @@ export default class NavBar extends React.Component {
     }
 
 }
+
+export default withRouter(NavBar)
