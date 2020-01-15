@@ -16,6 +16,7 @@ const AuthForms = ({ login, signUp, error }) => {
       ...signupData,
       [e.target.name]: e.target.value
     });
+    console.log(signupData)
   };
 
   const handleLoginSubmit = e => {
@@ -59,13 +60,13 @@ const AuthForms = ({ login, signUp, error }) => {
           type="password"
           name="password"
           placeholder="Password"
-          onChange={handleLoginChange}
+          onChange={handleSignupChange}
         />
         <input
           type="password"
           name="password_confirmation"
           placeholder="Password confirmation"
-          onChange={handleLoginChange}
+          onChange={handleSignupChange}
         />
         <input type="submit" />
       </form>

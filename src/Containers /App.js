@@ -2,11 +2,9 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from '../Pages/Home'
 import SearchPage from '../Pages/SearchPage'
-import SignUp from '../Pages/SignUp'
 import ContactUs from '../Components/ContactUs'
 import MyOasis from '../Pages/MyOasis'
 import AuthForms from '../Pages/AuthForms'
-import PostForms from '../PostForm'
 import API from '../Adapters/API'
 import { PLANTS_URL, USERS_URL, LOGIN_URL, VALIDATE_URL, WISHLIST_URL, GROWLIST_URL } from '../Adapters/API'
 import { withRouter } from 'react-router-dom'
@@ -112,7 +110,9 @@ class App extends React.Component {
         }
 
         const handleSignUp = signUpData => {
-
+            API.signUp(signUpData)
+            .then(this.setUser)
+            // .catch(console.error)
         }
 
         return (
@@ -132,7 +132,6 @@ class App extends React.Component {
                     error={this.state.error} 
                     login={handleLogin} 
                     signUp={handleSignUp} />} />
-                <Route exact path="/signup" render={() => <SignUp />} />
                 <Route exact path="/contact-us" render={() => <ContactUs />} />
                 <Route exact path="/my-oasis" render={() => <MyOasis
                     logout={this.logout}

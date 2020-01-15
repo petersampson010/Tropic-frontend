@@ -44,14 +44,18 @@ const updateList = (e, plant, user, list) => {
 
 
 const signUp = signupData => {
-    fetch(USERS_URL, {
+    return fetch(USERS_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
         }, body: JSON.stringify({ user: signupData })
     })
-    .then(jsonify);
+    .then(jsonify)
+    .then(data => {
+        localStorage.setItem("token", data.token);
+        return data.user;
+    });
 }
 
 
