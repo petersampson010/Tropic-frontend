@@ -51,7 +51,7 @@ const SearchPage = props => {
                 prevPage={props.prevPage}/>
             </div>
             <div className="search-results">
-                <SearchResults user={props.user} addToWishlist={props.addToWishlist} searchedPlants={props.searchedPlants}/>
+                <SearchResults user={props.user} addToWishlist={props.addToWishlist} shownPlants={props.shownPlants}/>
             </div>
             <Footer/>
         </div>

@@ -13,9 +13,9 @@ import { withRouter } from 'react-router-dom'
 class App extends React.Component {
     
     state = {
-        searchTerm: null,
         allPlants: [],
         searchedPlants: [],
+        shownPlants: [],
         searchSelection: null,
         error: "",
         user: false,
@@ -24,34 +24,32 @@ class App extends React.Component {
 
     componentDidMount() {
         this.fetchPlants()
-        // this.setState({num: Math.floor(Math.random() * 97)});
-        // this.fetchPlants(this.state.num, this.state.num + 3);
     }
 
     fetchPlants = () => {
         let rand = Math.floor(Math.random() * 97)
         fetch(PLANTS_URL)
             .then(res => res.json())
-            // .then(data => data.slice(num1, num2))
             .then(data => this.setState({ allPlants: data, num: rand}))
-            .then(() => this.setState({searchedPlants: this.state.allPlants.slice(rand, rand + 3)}))
+            .then(() => this.setState({searchedPlants: this.state.allPlants}))
+            .then(() => this.setState({shownPlants: this.state.searchedPlants.slice(rand, rand + 3)}))
     }
 
-    filterFetch = (attr, userInput) => {
-
-        let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput)
-        this.setState({searchedPlants: this.state.allPlants.filter(pl => pl[attr].includes(searchWord))})
-
-        // fetch(PLANTS_URL)
-        //     .then(res => res.json())
-        //     .then(data => data.filter(pl => pl[attr].includes(searchWord)))
-        //     .then(data => data.slice(0, 20))
-        //     .then(data => this.setState({ searchedPlants: data }))
+    updateSearchedPlants = (attr, userInput) => {
+        let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput);
+        this.setState({searchedPlants: this.state.allPlants.filter(pl => pl[attr].includes(searchWord))});
+        this.updateShownPlants(attr, userInput);
     }
+
+    updateShownPlants = (attr, userInput) => {
+        let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput);
+        this.setState({shownPlants: (this.state.allPlants.filter(pl => pl[attr].includes(searchWord))).slice(0, 3), num: 0});
+    }
+
 
     searchFV = e => {
         e.preventDefault();
-        this.filterFetch(this.state.searchSelection, e.target.plantsearch.value)
+        this.updateSearchedPlants(this.state.searchSelection, e.target.plantsearch.value)
     }
 
 
@@ -106,17 +104,17 @@ class App extends React.Component {
     }
 
     nextPage = () => {
-        this.state.num > 96 ? 
-            this.setState({searchedPlants: this.state.allPlants.slice(0, 3), 
+        this.state.num > this.state.searchedPlants.length - 3 ? 
+            this.setState({shownPlants: this.state.searchedPlants.slice(2), 
             num: 0})
-            : this.setState({searchedPlants: this.state.allPlants.slice(this.state.num + 3, this.state.num + 6), 
+            : this.setState({shownPlants: this.state.searchedPlants.slice(this.state.num + 3, this.state.num + 6), 
             num: this.state.num + 3}) 
     }
 
     prevPage = () => {
         this.state.num < 3 ?
-        this.setState({searchedPlants: this.state.allPlants.slice(97, 100), num: 97})
-        : this.setState({searchedPlants: this.state.allPlants.slice(this.state.num - 3, this.state.num), 
+        this.setState({shownPlants: this.state.searchedPlants.slice(-3), num: this.state.searchedPlants.length - 2})
+        : this.setState({shownPlants: this.state.searchedPlants.slice(this.state.num - 3, this.state.num), 
             num: this.state.num - 3});
     }
 
@@ -148,7 +146,7 @@ class App extends React.Component {
                     user={this.state.user}
                     searchFV={this.searchFV}
                     updateSearchSelection={this.updateSearchSelection}
-                    searchedPlants={this.state.searchedPlants}
+                    shownPlants={this.state.shownPlants}
                     addToWishlist={this.addToWishlist}
                     searchSelection={this.state.searchSelection} />}/>
                 <Route exact path='/authforms' render={() => <AuthForms 
