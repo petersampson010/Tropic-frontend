@@ -217,9 +217,11 @@ code {
 
 .search-box{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 9px;
   margin-bottom: 9px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .search-form{

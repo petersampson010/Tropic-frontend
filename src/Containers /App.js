@@ -14,32 +14,39 @@ class App extends React.Component {
     
     state = {
         searchTerm: null,
+        allPlants: [],
         searchedPlants: [],
         searchSelection: null,
         error: "",
         user: false,
+        num: null
     }
 
     componentDidMount() {
-        let rand = Math.floor(Math.random() * 97);
-        this.fetchPlants(rand, rand + 3);
+        this.fetchPlants()
+        // this.setState({num: Math.floor(Math.random() * 97)});
+        // this.fetchPlants(this.state.num, this.state.num + 3);
     }
 
-    fetchPlants = (num1, num2) => {
+    fetchPlants = () => {
+        let rand = Math.floor(Math.random() * 97)
         fetch(PLANTS_URL)
             .then(res => res.json())
-            .then(data => data.slice(num1, num2))
-            .then(data => this.setState({ searchedPlants: data }))
+            // .then(data => data.slice(num1, num2))
+            .then(data => this.setState({ allPlants: data, num: rand}))
+            .then(() => this.setState({searchedPlants: this.state.allPlants.slice(rand, rand + 3)}))
     }
 
     filterFetch = (attr, userInput) => {
 
         let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput)
-        fetch(PLANTS_URL)
-            .then(res => res.json())
-            .then(data => data.filter(pl => pl[attr].includes(searchWord)))
-            .then(data => data.slice(0, 3))
-            .then(data => this.setState({ searchedPlants: data }))
+        this.setState({searchedPlants: this.state.allPlants.filter(pl => pl[attr].includes(searchWord))})
+
+        // fetch(PLANTS_URL)
+        //     .then(res => res.json())
+        //     .then(data => data.filter(pl => pl[attr].includes(searchWord)))
+        //     .then(data => data.slice(0, 20))
+        //     .then(data => this.setState({ searchedPlants: data }))
     }
 
     searchFV = e => {
@@ -69,7 +76,6 @@ class App extends React.Component {
                 user: {
                     ...this.state.user,
                     growlist_plants: [...this.state.user.growlist_plants, plant]
-                    // growlist_plants: (this.state.user.growlist_plants.length === 0 ? [plant] : [...this.state.user.growlist_plants, plant])
                 }
             }))
     }
@@ -99,6 +105,15 @@ class App extends React.Component {
         localStorage.removeItem("token")
     }
 
+    nextPage = () => {
+        this.setState({searchedPlants: this.state.allPlants.slice(this.state.num + 3, this.state.num + 6), 
+            num: this.state.num + 3});
+    }
+
+    prevPage = () => {
+        this.setState({searchedPlants: this.state.allPlants.slice(this.state.num - 3, this.state.num), 
+            num: this.state.num - 3});
+    }
 
 
     render() {
@@ -112,8 +127,9 @@ class App extends React.Component {
         const handleSignUp = signUpData => {
             API.signUp(signUpData)
             .then(this.setUser)
-            // .catch(console.error)
         }
+
+
 
         return (
             <>
@@ -121,6 +137,8 @@ class App extends React.Component {
                 user={this.state.user} 
                 logout={this.logout}/>}/>
                 <Route exact path="/search" render={() => <SearchPage
+                    nextPage={this.nextPage}
+                    prevPage={this.prevPage}
                     logout={this.logout}
                     user={this.state.user}
                     searchFV={this.searchFV}
