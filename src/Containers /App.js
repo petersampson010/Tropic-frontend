@@ -106,12 +106,17 @@ class App extends React.Component {
     }
 
     nextPage = () => {
-        this.setState({searchedPlants: this.state.allPlants.slice(this.state.num + 3, this.state.num + 6), 
-            num: this.state.num + 3});
+        this.state.num > 96 ? 
+            this.setState({searchedPlants: this.state.allPlants.slice(0, 3), 
+            num: 0})
+            : this.setState({searchedPlants: this.state.allPlants.slice(this.state.num + 3, this.state.num + 6), 
+            num: this.state.num + 3}) 
     }
 
     prevPage = () => {
-        this.setState({searchedPlants: this.state.allPlants.slice(this.state.num - 3, this.state.num), 
+        this.state.num < 3 ?
+        this.setState({searchedPlants: this.state.allPlants.slice(97, 100), num: 97})
+        : this.setState({searchedPlants: this.state.allPlants.slice(this.state.num - 3, this.state.num), 
             num: this.state.num - 3});
     }
 
