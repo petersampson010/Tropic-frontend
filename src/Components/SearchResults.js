@@ -6,7 +6,7 @@ const SearchResults = props => {
 
     return (
         <div className="items-list">
-            {props.searchedPlants.map(p => <Plant addToWishlist={props.addToWishlist} plant={p}/>)}
+            {props.searchedPlants.map(p => <Plant user={props.user} addToWishlist={props.addToWishlist} plant={p}/>)}
         </div>
     )
 }

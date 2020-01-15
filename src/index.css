@@ -205,7 +205,7 @@ code {
 .search-items{
   display: flex;
   justify-content: space-around;
-  height: 20%;
+  height: 16%;
   background-color: orange;
   padding-top: 5vh;
   text-align: center;
@@ -257,6 +257,15 @@ code {
   display: inline;
 }
 
+.select-search{
+  height: 4%;
+  background-color: orange;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* ************* */
+
 .footer{
   position: absolute;
   display: flex;
@@ -286,7 +295,8 @@ code {
 
 .grow-graphic{
   height: 400px;
-  background-color: grey;
+  background-image: url('../src/images/small-leaf.jpeg');
+  background-size: cover;
 }
 
 .user-plants{

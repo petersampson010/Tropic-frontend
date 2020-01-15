@@ -43,11 +43,12 @@ const SearchPage = props => {
                     <p>Name</p>
                 </div>
             </div>
+            <div className="select-search">{props.searchSelection}</div>
             <div className="search-box">
                 <SearchBar searchFV={props.searchFV}/>
             </div>
             <div className="search-results">
-                <SearchResults addToWishlist={props.addToWishlist} searchedPlants={props.searchedPlants}/>
+                <SearchResults user={props.user} addToWishlist={props.addToWishlist} searchedPlants={props.searchedPlants}/>
             </div>
             <Footer/>
         </div>

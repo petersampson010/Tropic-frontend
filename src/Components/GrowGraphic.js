@@ -4,11 +4,7 @@ import Grow from './Grow'
 const GrowGraphic = props => {
 
     return (
-        <div className="grow-graphic">
-
-            HUGE FUCK OFF PICTURE??
-            {/* {props.growlist.map(p => <Grow plant={p}/>)} */}
-        </div>
+        <div className="grow-graphic"></div>
     )
 }
 
