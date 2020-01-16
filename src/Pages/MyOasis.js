@@ -13,7 +13,8 @@ export default class MyOasis extends React.Component {
             <div>
                 <NavBar logout={this.props.logout} user={this.props.user}/>
                 <GrowGraphic 
-                growlist={this.props.user.growlist_plants}/>
+                user={this.props.user}
+                growingPlantsFeatures={this.props.growingPlantsFeatures}/>
                 <UserPlants 
                 user={this.props.user}
                 addToGrowlist={this.props.addToGrowlist}

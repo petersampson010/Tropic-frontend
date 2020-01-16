@@ -8,6 +8,7 @@ import AuthForms from '../Pages/AuthForms'
 import API from '../Adapters/API'
 import { PLANTS_URL, USERS_URL, LOGIN_URL, VALIDATE_URL, WISHLIST_URL, GROWLIST_URL } from '../Adapters/API'
 import { withRouter } from 'react-router-dom'
+import { faPoll } from '@fortawesome/free-solid-svg-icons'
 
 
 class App extends React.Component {
@@ -19,11 +20,20 @@ class App extends React.Component {
         searchSelection: null,
         error: "",
         user: false,
-        num: null
+        num: null,
+        growingPlantsFeatures: []
     }
 
     componentDidMount() {
-        this.fetchPlants()
+        this.fetchPlants();
+    }
+
+    fetchPlantFeatures = () => {
+        const plant_names = this.state.user.growlist_plants.map(pl => pl.name)
+        fetch("http://localhost:3000/plant_growths")
+        .then(res => res.json())
+        .then(data => data.filter(pl => plant_names.includes(pl.name)))
+        .then(data => this.setState({growingPlantsFeatures: data}))
     }
 
     fetchPlants = () => {
@@ -125,6 +135,7 @@ class App extends React.Component {
             API.login(loginData)
                 .then(this.setUser)
                 .catch(console.error)
+                .then(this.fetchPlantFeatures)
         }
 
         const handleSignUp = signUpData => {
@@ -155,6 +166,7 @@ class App extends React.Component {
                     signUp={handleSignUp} />} />
                 <Route exact path="/contact-us" render={() => <ContactUs />} />
                 <Route exact path="/my-oasis" render={() => <MyOasis
+                    growingPlantsFeatures={this.state.growingPlantsFeatures}
                     logout={this.logout}
                     user={this.state.user}
                     addToGrowlist={this.addToGrowlist}

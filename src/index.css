@@ -294,13 +294,6 @@ code {
 
 
 
-
-.grow-graphic{
-  height: 400px;
-  background-image: url('../src/images/small-leaf.jpeg');
-  background-size: cover;
-}
-
 .user-plants{
   height: 370px;
   display: flex;
@@ -352,3 +345,37 @@ code {
   padding-top: 5vh;
   border-radius: 7%;
 }
+
+
+
+/* *****GROW****** */
+
+.grow-graphic{
+  height: 400px;
+  background-image: url('../src/images/small-leaf.jpeg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.grow{
+  height: 60px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timeline{
+  height: 2px;
+  left: 50px;
+  right: 50px;
+  background-color: black
+}
+
+/* .start-line{
+  height: 100%;
+  width: 2px;
+  backgorund-color: black 
+} */
