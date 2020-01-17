@@ -365,6 +365,8 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 .timeline{
@@ -374,8 +376,12 @@ code {
   background-color: black
 }
 
-/* .start-line{
-  height: 100%;
-  width: 2px;
-  backgorund-color: black 
-} */
+.top-timeline{
+  height: 57px;
+  top: 0px;
+}
+
+.bottom-timeline{
+  height: 57px;
+  bottom: 0px;
+}
