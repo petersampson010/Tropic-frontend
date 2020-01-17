@@ -1,30 +1,48 @@
 import React from 'react' 
 import GrowthStage from './GrowthStage'
 
-let newObj = {}
-
 
 export default class Grow extends React.Component {
 
+    state = {
+        stage: []
+    }
+
 
     // pf = plant feature
-    
-    setArray = () => {
-        console.log(this.props.plantF)
+    setGrowthStages = () => {
+
         let objKeys = Object.keys(this.props.plantF)
-        let newObj = objKeys.filter(ok => this.props.plantF[ok]  !== null )
-        debugger
+        let noNull = objKeys.filter(stage => this.props.plantF[stage] !== null)
+        let noId = noNull.filter(stage => stage !== "id")
+        let noName = noId.filter(stage => stage !== "name")
+        let noCreate = noName.filter(stage => stage !== "created_at")
+        let useful = noCreate.filter(stage => stage !== "updated_at")
+
+        console.log(useful)
+
+        useful.map(stage => this.setState({stage: [...this.state.stage, `${stage}: ${this.props.plantF[stage]}`]}))
+
+        // let target = {}
+        // let objKeys = Object.keys(this.props.plantF)
+        // let newObj = objKeys.filter(ok => this.props.plantF[ok]  !== null )
+        // newObj.map(k => target[k] = this.props.plantF[k])
+        // delete target["id"]
+        // delete target["name"]
+        // delete target["created_at"]
+        // delete target["updated_at"]
+        // this.setState({stage: target})
     }
 
     componentDidMount() {
-        this.setArray()
+        this.setGrowthStages()
     }
 
     render() {
         return (
             <div className="grow">
                 <div className="top-timeline">
-                    {/* {this.props.plantF.map(pf => <GrowthStage pf={pf}/>)} */}
+                    
                 </div>
                 <div className="timeline"></div>
                 <div className="bottom-timeline"></div>
