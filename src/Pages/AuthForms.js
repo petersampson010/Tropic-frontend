@@ -30,47 +30,49 @@ const AuthForms = ({ login, signUp, error }) => {
   };
   
   return (
-    <div className="auth-forms">
-      <form onSubmit={handleLoginSubmit}>
-        <h2>log in</h2>
-        <input
-          type="username"
-          name="username"
-          placeholder="Username"
-          onChange={handleLoginChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleLoginChange}
-        />
-        <input type="submit" />
-      </form>
-      or
-      <form onSubmit={handleSignupSubmit}>
-        <h2>sign up</h2>
-        <input
-          type="username"
-          name="username"
-          placeholder="Username"
-          onChange={handleSignupChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleSignupChange}
-        />
-        <input
-          type="password"
-          name="password_confirmation"
-          placeholder="Password confirmation"
-          onChange={handleSignupChange}
-        />
-        <input type="submit" />
-      </form>
-      <p>{error}</p>
+    <div className="auth-background">
+      <div className="auth-forms">
+        <form onSubmit={handleLoginSubmit}>
+          <h2>log in</h2>
+          <input
+            type="username"
+            name="username"
+            placeholder="Username"
+            onChange={handleLoginChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleLoginChange}
+          />
+          <input type="submit" />
+        </form>
+        or
+        <form onSubmit={handleSignupSubmit}>
+          <h2>sign up</h2>
+          <input
+            type="username"
+            name="username"
+            placeholder="Username"
+            onChange={handleSignupChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleSignupChange}
+          />
+          <input
+            type="password"
+            name="password_confirmation"
+            placeholder="Password confirmation"
+            onChange={handleSignupChange}
+          />
+          <input type="submit" />
+        </form>
+        <p>{error}</p>
+      </div>
     </div>
   );
 };
