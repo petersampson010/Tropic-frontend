@@ -12,29 +12,21 @@ export default class Grow extends React.Component {
     // pf = plant feature
     setGrowthStages = () => {
 
-        // let objKeys = Object.keys(this.props.plantF)
-        // let noNull = objKeys.filter(stage => this.props.plantF[stage] !== null)
-        // let noId = noNull.filter(stage => stage !== "id")
-        // let noName = noId.filter(stage => stage !== "name")
-        // let noCreate = noName.filter(stage => stage !== "created_at")
-        // let useful = noCreate.filter(stage => stage !== "updated_at")
-
-        // console.log(useful)
-
-        // useful.map(stage => this.setState({stage: [...this.state.stage, `${stage}: ${this.props.plantF[stage]}`]}))
-
-        let target = {}
+        let objArray = []
         let objKeys = Object.keys(this.props.plantF)
         let newObj = objKeys.filter(ok => this.props.plantF[ok]  !== null )
-        newObj.map(k => target[k] = this.props.plantF[k])
-        delete target["id"]
-        delete target["name"]
-        delete target["created_at"]
-        delete target["updated_at"]
-        console.log(target)
-        let targetArray = Array.from(target)
-        console.log(targetArray)
-        // this.setState({stage: target})
+        let new1 = newObj.filter(ok => ok !== "id")
+        let new2 = new1.filter(ok => ok !== "name")
+        let new3 = new2.filter(ok => ok !== "created_at")
+        let new4 = new3.filter(ok => ok !== "updated_at")
+        new4.map(ok => {
+            let obj = {}
+            obj[ok] = this.props.plantF[ok];
+            objArray.push(obj)
+        })
+        console.log(objArray)
+        this.setState({stage: objArray})
+
     }
 
     componentDidMount() {
@@ -45,7 +37,7 @@ export default class Grow extends React.Component {
         return (
             <div className="grow">
                 <div className="top-timeline">
-                    
+                    {this.state.stage.map(st => <Checkpoint stage={st}/>)}
                 </div>
                 <div className="timeline"></div>
                 <div className="bottom-timeline"></div>

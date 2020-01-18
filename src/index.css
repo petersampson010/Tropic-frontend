@@ -370,6 +370,7 @@ code {
 }
 
 .timeline{
+  position: relative;
   height: 2px;
   left: 50px;
   right: 50px;
@@ -387,7 +388,9 @@ code {
 }
 
 .checkpoint{
+  position: absolute;
+  
   width: 2px;
-  height: 15px;
+  height: 60px;
   background-color: black 
 }
