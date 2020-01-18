@@ -35,12 +35,16 @@ export default class Plant extends React.Component {
         this.setState({attributes: {...attrObject, [attr]: true}})
     }
 
+    unToggleAttribute = attr => {
+        this.setState({attributes: attrObject})
+    }
+
     render() {
         return (
             <div className="plant" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                 <div style={{display: this.state.isHovering ? "block" : "none"}}>
                     <h5>{this.props.plant.name}</h5>
-                    {attributes.map(att => <p>{this.state.attributes[att] ? <div>{this.props.plant[att]}</div> : <p onClick={() => this.toggleAttribute(att)}>{att} <div className="arrow">↡</div></p>}</p>)}
+                    {attributes.map(att => <p>{this.state.attributes[att] ? <div><p onClick={() => this.unToggleAttribute(att)}>{att}<div className="arrow">↟</div></p><div>{this.props.plant[att]}</div></div> : <p onClick={() => this.toggleAttribute(att)}>{att}<div className="arrow">↡</div></p>}</p>)}
                     {this.props.user ? <button className="add-to-wishlist" onClick={(e) => this.props.addToWishlist(e, this.props.plant)}>Add to Wishlist</button>
                     : null}
                 </div>

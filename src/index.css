@@ -395,3 +395,10 @@ code {
   height: 60px;
   background-color: black 
 }
+
+.user-line{
+  position: absolute;
+  width: 2px;
+  height: 60px;
+  background-color: red
+}

@@ -1,5 +1,6 @@
 import React from 'react' 
 import Checkpoint from './Checkpoint'
+import Start from './Start'
 
 
 export default class Grow extends React.Component {
@@ -11,6 +12,8 @@ export default class Grow extends React.Component {
 
 
     // pf = plant feature
+
+    
     setGrowthStages = () => {
 
         let objValues = Object.values(this.props.plantF)
@@ -29,7 +32,6 @@ export default class Grow extends React.Component {
             obj[ok] = this.props.plantF[ok];
             objArray.push(obj)
         })
-        // console.log(objArray)
         this.setState({stage: objArray})
     }
 
@@ -42,7 +44,9 @@ export default class Grow extends React.Component {
             <div className="grow">
                 <div className="grow-container">
                     <div className="top-timeline">
+                        <Start />
                         {this.state.stage.map(st => <Checkpoint stage={st} maxVal={this.state.maxVal}/>)}
+
                     </div>
                     <div className="timeline"></div>
                     <div className="bottom-timeline"></div>

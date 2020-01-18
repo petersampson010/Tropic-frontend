@@ -8,7 +8,7 @@ export default class Checkpoint extends React.Component {
 
     screenWidth = window.innerWidth
 
-    start = this.screenWidth/7.25
+    start = this.screenWidth/8
 
     render() {
         return (

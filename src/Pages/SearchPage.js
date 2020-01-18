@@ -43,7 +43,7 @@ const SearchPage = props => {
                     <p>Name</p>
                 </div>
             </div>
-            <div className="select-search">{props.searchSelection}</div>
+            <div className="select-search">{props.searchSelection === null ? "Select a category to search by" : `Currently searching by ${props.searchSelection}`}</div>
             <div>
                 <SearchBar 
                 searchFV={props.searchFV}
