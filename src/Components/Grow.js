@@ -7,7 +7,8 @@ export default class Grow extends React.Component {
 
     state = {
         stage: [],
-        maxVal: null
+        maxVal: null,
+        prop: false 
     }
 
 
