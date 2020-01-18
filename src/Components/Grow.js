@@ -5,12 +5,17 @@ import Checkpoint from './Checkpoint'
 export default class Grow extends React.Component {
 
     state = {
-        stage: []
+        stage: [],
+        maxVal: null
     }
 
 
     // pf = plant feature
     setGrowthStages = () => {
+
+        let objValues = Object.values(this.props.plantF)
+        let ya = objValues.filter(ov => typeof ov === "number")
+        this.setState({maxVal: Math.max(...ya)})
 
         let objArray = []
         let objKeys = Object.keys(this.props.plantF)
@@ -24,9 +29,8 @@ export default class Grow extends React.Component {
             obj[ok] = this.props.plantF[ok];
             objArray.push(obj)
         })
-        console.log(objArray)
+        // console.log(objArray)
         this.setState({stage: objArray})
-
     }
 
     componentDidMount() {
@@ -36,11 +40,13 @@ export default class Grow extends React.Component {
     render() {
         return (
             <div className="grow">
-                <div className="top-timeline">
-                    {this.state.stage.map(st => <Checkpoint stage={st}/>)}
+                <div className="grow-container">
+                    <div className="top-timeline">
+                        {this.state.stage.map(st => <Checkpoint stage={st} maxVal={this.state.maxVal}/>)}
+                    </div>
+                    <div className="timeline"></div>
+                    <div className="bottom-timeline"></div>
                 </div>
-                <div className="timeline"></div>
-                <div className="bottom-timeline"></div>
             </div>
         )
     }

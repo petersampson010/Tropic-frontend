@@ -361,19 +361,21 @@ code {
 
 .grow{
   height: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.grow-container{
   background-color: white;
+  width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 60px;
-  margin-right: 60px;
 }
 
 .timeline{
   position: relative;
   height: 2px;
-  left: 50px;
-  right: 50px;
   background-color: black
 }
 
@@ -389,7 +391,6 @@ code {
 
 .checkpoint{
   position: absolute;
-  
   width: 2px;
   height: 60px;
   background-color: black 
