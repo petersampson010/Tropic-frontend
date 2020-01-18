@@ -385,3 +385,9 @@ code {
   height: 57px;
   bottom: 0px;
 }
+
+.checkpoint{
+  width: 2px;
+  height: 15px;
+  background-color: black 
+}
