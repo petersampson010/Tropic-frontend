@@ -30,10 +30,6 @@ const SearchPage = props => {
                     <FontAwesomeIcon icon={faPepperHot} size="4x" onClick={(e) => props.updateSearchSelection(e, "uses")}/>
                     <p>Uses</p>
                 </div>
-                {/* <div>
-                    <FontAwesomeIcon icon={faTractor} size="4x" onClick={(e) => props.updateSearchSelection(e, "propagation")}/>
-                    <p>Propagation</p>
-                </div> */}
                 <div>
                     <FontAwesomeIcon icon={faSun} size="4x" onClick={(e) => props.updateSearchSelection(e, "climate")}/>
                     <p>Climate</p>
