@@ -6,10 +6,11 @@ export default class SearchBar extends React.Component {
         return (
             <div className="search-box">
                 <div onClick={this.props.prevPage}>Prev. Page</div>
-                <form onSubmit={e => this.props.searchFV(e)}>
+                {(this.props.searchSelection === null) ?  null 
+                : <form onSubmit={e => this.props.searchFV(e)}>
                     <input name="plantsearch"/>
                     <input type="submit" value="Search"/>
-                </form>
+                </form>}
                 <div onClick={this.props.nextPage}>Next Page</div>
             </div>
         )
