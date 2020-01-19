@@ -47,7 +47,7 @@ export default class Grow extends React.Component {
                     <div className="top-timeline">
                         <Start />
                         {this.state.stage.map(st => <Checkpoint stage={st} maxVal={this.state.maxVal}/>)}
-
+                        <button className="delete-grow" onClick={e => this.props.removeGrow(e, this.props.key)}>Remove from growing</button>
                     </div>
                     <div className="timeline"></div>
                     <div className="bottom-timeline"></div>

@@ -1,5 +1,6 @@
 import React from 'react' 
 import { withRouter } from 'react-router-dom'
+import Footer from './Footer'
 
 class NavBar extends React.Component {
 
@@ -37,7 +38,7 @@ class NavBar extends React.Component {
 
         return (
             <nav className="nav-menu">
-                <div className="nav-logo"></div>
+                <div className="nav-logo">Tropic</div>
 
                 <div className="nav-menu-right">
                     <ul className="nav-menu-list">
@@ -47,6 +48,7 @@ class NavBar extends React.Component {
                         </li>
                     </ul>
                 </div>
+                <Footer />
             </nav>
         )
     }

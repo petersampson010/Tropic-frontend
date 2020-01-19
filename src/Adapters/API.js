@@ -40,8 +40,10 @@ const updateList = (e, plant, user, list) => {
     .then(res => res.json())
 }
 
-
-
+const fetchPF = () => {
+    return fetch("http://localhost:3000/plant_growths")
+        .then(res => res.json())
+}
 
 const signUp = signupData => {
     return fetch(USERS_URL, {
@@ -76,21 +78,41 @@ const validateUser = () => {
     }
 };
 
-// const postPost = post => {
-//     fetch(POSTS_URL, {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application'json",
-//             Authorization: localStorage.token
-//         }, body: JSON.stringify({post})
-//     })
-//     .then(jsonify)
-// }
+const fetchPlants = () => {
+    return fetch(PLANTS_URL)
+        .then(res => res.json())
+}
+
+const deleteWishlist = (e, wish) => {
+    e.preventDefault()
+    let configObj = {
+        method: "DELETE"
+    }
+    return fetch(`${WISHLIST_URL}/${wish.id}`, configObj)
+}
+
+const deleteGrow = (e, plant_id) => {
+    e.preventDefault();
+        let configObj = {
+            method: "DELETE"
+        }
+        return fetch(`${GROWLIST_URL}/${plant_id}`, configObj)
+}
+
+const fetchUser = (id) => {
+    return fetch(`${USERS_URL}/${id}`)
+        .then(res => res.json())
+}
 
 export default {
     login, 
     signUp,
     validateUser,
-    updateList
+    updateList,
+    fetchPF,
+    fetchPlants,
+    deleteWishlist,
+    deleteGrow,
+    fetchUser
 }
+

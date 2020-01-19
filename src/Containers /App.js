@@ -30,16 +30,14 @@ class App extends React.Component {
 
     fetchPlantFeatures = () => {
         const plant_names = this.state.user.growlist_plants.map(pl => pl.name)
-        fetch("http://localhost:3000/plant_growths")
-        .then(res => res.json())
+        API.fetchPF()
         .then(data => data.filter(pl => plant_names.includes(pl.name)))
         .then(data => this.setState({growingPlantsFeatures: data}))
     }
 
     fetchPlants = () => {
-        let rand = Math.floor(Math.random() * 97)
-        fetch(PLANTS_URL)
-            .then(res => res.json())
+        let rand = Math.floor(Math.random() * 97);
+        API.fetchPlants()
             .then(data => this.setState({ allPlants: data, num: rand}))
             .then(() => this.setState({searchedPlants: this.state.allPlants}))
             .then(() => this.setState({shownPlants: this.state.searchedPlants.slice(rand, rand + 3)}))
@@ -89,11 +87,7 @@ class App extends React.Component {
     }
 
     deleteFromWishlist = (e, wish) => {
-        e.preventDefault();
-        let configObj = {
-            method: "DELETE"
-        }
-        fetch(`${WISHLIST_URL}/${wish.id}`, configObj)
+        API.deleteWishlist(e, wish)
             .then(this.setState({user: {...this.state.user, 
                 wishlist_plants: this.state.user.wishlist_plants.filter(p => p.id !== wish.plant_id)}
             }))
@@ -128,6 +122,12 @@ class App extends React.Component {
             num: this.state.num - 3});
     }
 
+    removeGrow = (e, plant_id) => {
+        API.deleteGrow(e, plant_id)
+            .then(() => API.fetchUser(this.state.user.id))
+            .then(data => this.setState({user: data}))
+    }
+
 
     render() {
 
@@ -142,6 +142,8 @@ class App extends React.Component {
             API.signUp(signUpData)
             .then(this.setUser)
         }
+
+
 
 
 
@@ -166,6 +168,7 @@ class App extends React.Component {
                     signUp={handleSignUp} />} />
                 <Route exact path="/contact-us" render={() => <ContactUs />} />
                 <Route exact path="/my-oasis" render={() => <MyOasis
+                    removeGrow={this.removeGrow}
                     growingPlantsFeatures={this.state.growingPlantsFeatures}
                     logout={this.logout}
                     user={this.state.user}

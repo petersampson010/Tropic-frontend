@@ -44,7 +44,7 @@ export default class WishItem extends React.Component {
 
         return (
             <div className="wish-item">
-                {this.state.modal ? <Modal visible={this.state.modal} width="1000" height="550" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                {this.state.modal ? <Modal className="modal" visible={this.state.modal} width="1000" height="550" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
                         <h5>{this.props.plant.name}</h5>
                         {attributes.map(att => <p>{this.state.attributes[att] ? <div>{this.props.plant[att]}</div> : <p onClick={() => this.toggleAttribute(att)}>{att} <div className="arrow">↡</div></p>}</p>)}

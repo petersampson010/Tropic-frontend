@@ -50,7 +50,6 @@ const SearchPage = props => {
             <div className="search-results">
                 <SearchResults user={props.user} addToWishlist={props.addToWishlist} shownPlants={props.shownPlants}/>
             </div>
-            <Footer/>
         </div>
     )
 }
