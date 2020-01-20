@@ -94,6 +94,15 @@ class App extends React.Component {
             })))
     }
 
+    deleteFromGrowlist = (e, userId, plantId) => {
+        API.findGrow(userId, plantId)
+            // .then(console.log)
+            .then(grow => API.deleteGrow(e, grow)
+                .then(this.setState({user: {...this.state.user, 
+                growlist_plants: this.state.user.growlist_plants.filter(p => p.id !== grow.plant_id)}
+            })))
+    }
+
 
     setUser = (user) => {
         const { history } = this.props
@@ -121,12 +130,6 @@ class App extends React.Component {
         this.setState({shownPlants: this.state.searchedPlants.slice(-3), num: this.state.searchedPlants.length - 2})
         : this.setState({shownPlants: this.state.searchedPlants.slice(this.state.num - 3, this.state.num), 
             num: this.state.num - 3});
-    }
-
-    removeGrow = (e, plant_id) => {
-        API.deleteGrow(e, plant_id)
-            .then(() => API.fetchUser(this.state.user.id))
-            .then(data => this.setState({user: data}))
     }
 
 
@@ -169,7 +172,7 @@ class App extends React.Component {
                     signUp={handleSignUp} />} />
                 <Route exact path="/contact-us" render={() => <ContactUs />} />
                 <Route exact path="/my-oasis" render={() => <MyOasis
-                    removeGrow={this.removeGrow}
+                    deleteFromGrowlist={this.deleteFromGrowlist}
                     growingPlantsFeatures={this.state.growingPlantsFeatures}
                     logout={this.logout}
                     user={this.state.user}

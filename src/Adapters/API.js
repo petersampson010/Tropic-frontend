@@ -88,16 +88,15 @@ const deleteWishlist = (e, wish) => {
     let configObj = {
         method: "DELETE"
     }
-    console.log(wish)
     return fetch(`${WISHLIST_URL}/${wish.id}`, configObj)
 }
 
-const deleteGrow = (e, plant_id) => {
+const deleteGrow = (e, grow) => {
     e.preventDefault();
-        let configObj = {
+    let configObj = {
             method: "DELETE"
-        }
-        return fetch(`${GROWLIST_URL}/${plant_id}`, configObj)
+    }
+    return fetch(`${GROWLIST_URL}/${grow.id}`, configObj)
 }
 
 const fetchUser = (id) => {
@@ -113,6 +112,17 @@ const findWish = (userId, plantId) => {
             .then(data => data[0])
 }
 
+const findGrow = (userId, plantId) => {
+    // console.log(plantId)
+    // console.log(userId)
+    return fetch(GROWLIST_URL)
+        .then(res => res.json())
+        .then(data => data.filter(g => g.user_id === userId))
+        .then(data => data.filter(g => g.plant_id === plantId))
+        // .then(console.log)
+        .then(data => data[0])
+}
+
 export default {
     login, 
     signUp,
@@ -123,6 +133,7 @@ export default {
     deleteWishlist,
     deleteGrow,
     fetchUser, 
-    findWish
+    findWish,
+    findGrow
 }
 

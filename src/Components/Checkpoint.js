@@ -2,17 +2,23 @@ import React from 'react'
 
 export default class Checkpoint extends React.Component {
 
+    // componentDidMount() {
+    //     console.log(this.value)
+    //     console.log(this.valuePerc)
+    //     console.log(this.props.maxVal)
+    // }
+
     key = Object.keys(this.props.stage)[0]
 
     value = Object.values(this.props.stage)[0]
 
-    screenWidth = window.innerWidth
+    containerWidth = 800
 
-    start = this.screenWidth/8
+    distance = this.value*(this.containerWidth/this.props.maxVal)
 
     render() {
         return (
-            <div className="checkpoint" style={{left: this.start + (this.screenWidth*(this.value/this.props.maxVal)) }}>{this.key}</div>
+            <div className="checkpoint" style={{left: this.distance}}>{this.key}</div>
         )
     }
 }

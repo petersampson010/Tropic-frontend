@@ -400,7 +400,7 @@ code {
 .grow-container{
   position: relative;
   background-color: white;
-  width: 75%;
+  width: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;

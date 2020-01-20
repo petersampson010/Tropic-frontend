@@ -5,7 +5,7 @@ const GrowGraphic = props => {
 
     return (
         <div className="grow-graphic">
-            {props.growingPlantsFeatures.map(pl => <Grow removeGrow={props.removeGrow} key = {pl.id} plantF={pl}/>)}
+            {props.growingPlantsFeatures.map(pl => <Grow user={props.user} deleteFromGrowlist={props.deleteFromGrowlist} key={pl.id} plantF={pl}/>)}
         </div>
     )
 }
