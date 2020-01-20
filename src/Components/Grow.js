@@ -17,10 +17,6 @@ export default class Grow extends React.Component {
     
     setGrowthStages = () => {
 
-        let objValues = Object.values(this.props.plantF)
-        let ya = objValues.filter(ov => typeof ov === "number")
-        this.setState({maxVal: Math.max(...ya)})
-
         let objArray = []
         let objKeys = Object.keys(this.props.plantF)
         let newObj = objKeys.filter(ok => this.props.plantF[ok]  !== null )
@@ -33,25 +29,39 @@ export default class Grow extends React.Component {
             obj[ok] = this.props.plantF[ok];
             objArray.push(obj)
         })
-        this.setState({stage: objArray})
+        this.setState({stage: objArray});
+        this.setMaxVal(objArray)
     }
+
+    setMaxVal = (objArray) => {
+        let max = 0
+        objArray.map(obj => {
+            if (Object.values(obj)[0] > max) {
+                max = Object.values(obj)[0]
+            }
+        })
+        this.setState({maxVal: max})
+    }
+    
 
     componentDidMount() {
         this.setGrowthStages()
+        // this.setMaxVal()
     }
 
     render() {
         return (
             <div className="grow">
+                <button>View re-growth of {this.props.plantF.name}</button>
                 <div className="grow-container">
                     <div className="top-timeline">
                         <Start />
                         {this.state.stage.map(st => <Checkpoint stage={st} maxVal={this.state.maxVal}/>)}
-                        <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>Remove from growing</button>
                     </div>
                     <div className="timeline"></div>
                     <div className="bottom-timeline"></div>
                 </div>
+                <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>Remove from growing</button>
             </div>
         )
     }
