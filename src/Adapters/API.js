@@ -4,6 +4,7 @@ export const LOGIN_URL = "http://localhost:3000/users/login"
 export const VALIDATE_URL = "http://localhost:3000/users/validate_user"
 export const WISHLIST_URL = "http://localhost:3000/wishlists"
 export const GROWLIST_URL = "http://localhost:3000/growlists"
+export const PLANT_GROWTHS_URL = "http://localhost:3000/plant_growths"
 
 const jsonify = res => {
     if (!res.ok) throw {error: 'something went wrong'}
@@ -123,6 +124,11 @@ const findGrow = (userId, plantId) => {
         .then(data => data[0])
 }
 
+const getPlantFeatures = (id) => {
+    return fetch(`${PLANT_GROWTHS_URL}/${id}`)
+        .then(res => res.json())
+}
+
 export default {
     login, 
     signUp,
@@ -134,6 +140,7 @@ export default {
     deleteGrow,
     fetchUser, 
     findWish,
-    findGrow
+    findGrow,
+    getPlantFeatures
 }
 

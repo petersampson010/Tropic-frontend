@@ -46,7 +46,6 @@ export default class Grow extends React.Component {
 
     componentDidMount() {
         this.setGrowthStages()
-        // this.setMaxVal()
     }
 
     render() {

@@ -77,6 +77,7 @@ class App extends React.Component {
     }
 
     addToGrowlist = (e, plant) => {
+        // this.state.growingPlantsFeatures
         API.updateList(e, plant, this.state.user, GROWLIST_URL)
             .then(plant => this.setState({
                 user: {
@@ -84,6 +85,8 @@ class App extends React.Component {
                     growlist_plants: [...this.state.user.growlist_plants, plant]
                 }
             }))
+            .then(() => API.getPlantFeatures(plant.id)
+                .then(data => this.setState({growingPlantsFeatures: [...this.state.growingPlantsFeatures, data]})))
     }
 
     deleteFromWishlist = (e, userId, plantId) => {
@@ -95,12 +98,13 @@ class App extends React.Component {
     }
 
     deleteFromGrowlist = (e, userId, plantId) => {
+        console.log(plantId)
         API.findGrow(userId, plantId)
-            // .then(console.log)
             .then(grow => API.deleteGrow(e, grow)
                 .then(this.setState({user: {...this.state.user, 
-                growlist_plants: this.state.user.growlist_plants.filter(p => p.id !== grow.plant_id)}
-            })))
+                growlist_plants: this.state.user.growlist_plants.filter(p => p.id !== grow.plant_id)},
+                growingPlantsFeatures: this.state.growingPlantsFeatures.filter(gp => gp.id !== plantId)}
+            )))
     }
 
 
