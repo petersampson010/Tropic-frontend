@@ -1,6 +1,8 @@
 import React from 'react' 
 import Checkpoint from './Checkpoint'
 import Start from './Start'
+import Modal from 'react-awesome-modal'
+
 
 
 export default class Grow extends React.Component {
@@ -9,7 +11,8 @@ export default class Grow extends React.Component {
         stage: [],
         maxVal: null,
         prop: false,
-        sections: []
+        sections: [],
+        modal: false
     }
 
 
@@ -64,10 +67,18 @@ export default class Grow extends React.Component {
         return sectionSpace
     }
 
+    viewRegrowth = () => {
+        this.setState({modal: true })
+    }
+
+    removeModal = () => {
+        this.setState({modal: false})
+    }
+
     render() {
         return (
             <div className="grow">
-                <button>View re-growth of {this.props.plantF.name}</button>
+                {this.state.modal ? <Modal visible={true} className="modal" backgroundColor="red" height="550" width="1000" onClickAway={() => this.removeModal()}>{this.props.user.growlist_plants.filter(p => p.name === this.props.plantF.name)[0].propagation}</Modal> : <button onClick={this.viewRegrowth} >View re-growth of {this.props.plantF.name}</button>}
                 <div className="grow-container">
                     <div className="top-timeline">
                         <Start />

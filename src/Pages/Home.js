@@ -12,7 +12,7 @@ const Home = props => {
                 <h3 className="slogan">The brighter side of fruit and veg</h3>
                 <div className="home-options">
                     <div className="card1">
-                        <NavLink to="/search" className="card1t">look around</NavLink>
+                        <NavLink to="/search" className="card1t">explore</NavLink>
                     </div>
                     <div className="card2">
                         {props.user ? <p className="card2t" onClick={props.logout}>logout</p>

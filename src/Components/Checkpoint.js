@@ -51,7 +51,7 @@ export default class Checkpoint extends React.Component {
             )
         } else {
             return (
-                <div className="checkpointS" style={{left: this.distance, color: this.colorAttr(this.key)}}>{this.key}</div>
+                <div className="checkpointS" style={{left: this.distance, width: "10px", backgroundColor: this.colorAttr(this.key)}}></div>
             )
         }
     }

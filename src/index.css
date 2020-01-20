@@ -32,13 +32,16 @@ code {
   padding-top: 10%;
   background-image: url('./images/home-background.jpg');
   background-size: cover;
+  
 }
 
 .home-box{
-  width: 800px;
+  width: 70vw;
   margin: 0 auto;
   padding-top: 2%;
   background-color: rgb(91, 143, 117);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
 }
 
 .space{
@@ -79,11 +82,13 @@ code {
   background-image: url('./images/pomegranate.jpg');
   background-size: cover;
   color: white;
+
 }
 
 .card1t{
   text-decoration: none;
   color: whitesmoke;
+  bottom: 30px;
 }
 
 .card2{
@@ -129,7 +134,7 @@ code {
   background-color: rgba(0, 0, 0, 0.836);
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  width: 1200px;
+  width: 85vw;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -143,8 +148,8 @@ code {
   color: rgba(220, 250, 206, 0.774);
   display: inline-block;
   height: 100%;
-  width: 162px;
-  padding-left: 100px;
+  width: 20vw;
+  padding-left: 10vw;
 }
 
 .nav-menu-right{
@@ -165,6 +170,7 @@ code {
   display: inline-block;
   height: 100%;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .nav-list-item:last-child {
@@ -249,6 +255,7 @@ code {
   text-align: center;
   font-size: 14px;
   color: rgba(220, 250, 206, 0.774);
+  cursor: pointer;
 }
 
 .plant-image{
@@ -281,7 +288,8 @@ code {
   position: absolute;
   background-color: white;
   height: 80px;
-  left: 1250px;
+  left: 85vw;
+  width: 14vw;
   font-size: 10px;
   text-align: right;
 }
@@ -298,7 +306,9 @@ code {
 
 /* ******MYOASIS******** */
 
-
+button{
+  cursor: pointer;
+}
 
 .user-plants{
   height: 370px;
