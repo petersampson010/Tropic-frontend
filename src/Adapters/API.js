@@ -104,6 +104,15 @@ const fetchUser = (id) => {
         .then(res => res.json())
 }
 
+const findWish = (userId, plantId) => {
+        return fetch(WISHLIST_URL)
+            .then(res => res.json())
+            .then(data => data.filter(w => w.user_id === userId))
+            .then(data => data.filter(w => w.plant_id === plantId))
+            .then(data => data[0])
+            .then(console.log)
+}
+
 export default {
     login, 
     signUp,
@@ -113,6 +122,7 @@ export default {
     fetchPlants,
     deleteWishlist,
     deleteGrow,
-    fetchUser
+    fetchUser, 
+    findWish
 }
 

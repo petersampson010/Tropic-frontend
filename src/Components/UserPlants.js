@@ -10,6 +10,7 @@ const UserPlants = props => {
             <div className="wishlist">
                 <h3 className="wishlist-header">WISHLIST</h3>
                 {props.user ? props.user.wishlist_plants.map(p => <WishItem 
+                user={props.user}
                 plant={p}
                 addToGrowlist={props.addToGrowlist}
                 deleteFromWishlist={props.deleteFromWishlist}/>)
