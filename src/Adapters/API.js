@@ -7,8 +7,11 @@ export const GROWLIST_URL = "http://localhost:3000/growlists"
 export const PLANT_GROWTHS_URL = "http://localhost:3000/plant_growths"
 
 const jsonify = res => {
-    if (!res.ok) throw {error: 'something went wrong'}
-    return res.json()
+    if (!res.ok) {
+        return false
+    } else {
+        return res.json()
+    }
 }
 
 const login = loginData => {
@@ -21,10 +24,21 @@ const login = loginData => {
         body: JSON.stringify({ user: loginData })
     })
     .then(jsonify)
-    .then(data => {
+    .then(data => check(data))
+    // .then(data => {
+    //     localStorage.setItem("token", data.token);
+    //     return data.user;
+    // });
+}
+
+const check = (data) => {
+    if (data) {
         localStorage.setItem("token", data.token);
-        return data.user;
-    });
+        return data.user
+    } else {
+        return false 
+    }
+    // console.log(data)
 }
 
 const updateList = (e, plant, user, list) => {

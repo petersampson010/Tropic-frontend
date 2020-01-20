@@ -75,7 +75,7 @@ const AuthForms = ({ login, signUp, error }) => {
           </form>
         </div>
       </div>
-        <p>{error}</p>
+        <p className="error">{error}</p>
     </div>
   );
 };

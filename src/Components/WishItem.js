@@ -41,6 +41,10 @@ export default class WishItem extends React.Component {
         this.setState({attributes: {...attrObject, [attr]: true}})
     }
 
+    unToggleAttribute = attr => {
+        this.setState({attributes: {...attributes, [attr]: false}})
+    }
+
     render() {
 
         return (
@@ -48,7 +52,7 @@ export default class WishItem extends React.Component {
                 {this.state.modal ? <Modal className="modal" visible={this.state.modal} width="1000" height="550" effect="fadeInUp" onClickAway={() => this.closeModal()}>
                     <div>
                         <h5>{this.props.plant.name}</h5>
-                        {attributes.map(att => <p>{this.state.attributes[att] ? <div>{this.props.plant[att]}</div> : <p onClick={() => this.toggleAttribute(att)}>{att} <div className="arrow">↡</div></p>}</p>)}
+                        {attributes.map(att => <p>{this.state.attributes[att] ? <div><p onClick={() => this.unToggleAttribute(att)}>{att}<div className="arrow">↟</div></p><div>{this.props.plant[att]}</div></div> : <p onClick={() => this.toggleAttribute(att)}>{att}<div className="arrow">↡</div></p>}</p>)}
                         <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
                     </div>
                 </Modal>

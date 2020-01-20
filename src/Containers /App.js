@@ -25,7 +25,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchPlants();
+        this.fetchPlants()
     }
 
     fetchPlantFeatures = () => {
@@ -67,18 +67,22 @@ class App extends React.Component {
     }
 
     addToWishlist = (e, plant) => {
-        API.updateList(e, plant, this.state.user, WISHLIST_URL)        
+        if (this.state.user.wishlist_plants > 8) {
+        } else {
+            API.updateList(e, plant, this.state.user, WISHLIST_URL)        
             .then(plant => this.setState({
                 user: {
                     ...this.state.user,
                     wishlist_plants: [...this.state.user.wishlist_plants, plant]
                 }
             }))
+        }
     }
 
     addToGrowlist = (e, plant) => {
-        // this.state.growingPlantsFeatures
-        API.updateList(e, plant, this.state.user, GROWLIST_URL)
+        if (this.state.growingPlantsFeatures.length > 5) {
+        } else {
+            API.updateList(e, plant, this.state.user, GROWLIST_URL)
             .then(plant => this.setState({
                 user: {
                     ...this.state.user,
@@ -86,7 +90,8 @@ class App extends React.Component {
                 }
             }))
             .then(() => API.getPlantFeatures(plant.id)
-                .then(data => this.setState({growingPlantsFeatures: [...this.state.growingPlantsFeatures, data]})))
+            .then(data => this.setState({growingPlantsFeatures: [...this.state.growingPlantsFeatures, data]})))
+        }
     }
 
     deleteFromWishlist = (e, userId, plantId) => {
@@ -98,7 +103,6 @@ class App extends React.Component {
     }
 
     deleteFromGrowlist = (e, userId, plantId) => {
-        console.log(plantId)
         API.findGrow(userId, plantId)
             .then(grow => API.deleteGrow(e, grow)
                 .then(this.setState({user: {...this.state.user, 
@@ -110,9 +114,16 @@ class App extends React.Component {
 
     setUser = (user) => {
         const { history } = this.props
-        this.setState({
-            user
-        }, () => history.push('/my-oasis'))
+        if (user) { 
+            this.setState({
+                user
+            }, () => {
+                history.push('/my-oasis');
+                this.fetchPlantFeatures()
+            })
+        } else {
+            this.setState({error: "please enter a valid username and password"})
+        }
     }
 
 
@@ -142,8 +153,6 @@ class App extends React.Component {
         const handleLogin = loginData => {
             API.login(loginData)
                 .then(this.setUser)
-                .catch(console.error)
-                .then(this.fetchPlantFeatures)
         }
 
         const handleSignUp = signUpData => {
