@@ -8,7 +8,8 @@ export default class Grow extends React.Component {
     state = {
         stage: [],
         maxVal: null,
-        prop: false 
+        prop: false,
+        sections: []
     }
 
 
@@ -46,6 +47,21 @@ export default class Grow extends React.Component {
 
     componentDidMount() {
         this.setGrowthStages()
+        // this.workIt()
+    }
+
+    workIt = () => {
+        let keys = []
+        let values = []
+        let sectionSpace = []
+        this.state.stage.map(st => {let key = Object.keys(st)[0]; keys.push(key)})
+        this.state.stage.map(st => {let value = Object.values(st)[0]; values.push(value)})
+        for (let i=0; i<keys.length; i++) {
+            if (keys[i].includes("_f")) {
+                sectionSpace.push((values[i] - values[i-1]))
+            }
+        }
+        return sectionSpace
     }
 
     render() {
@@ -55,7 +71,7 @@ export default class Grow extends React.Component {
                 <div className="grow-container">
                     <div className="top-timeline">
                         <Start />
-                        {this.state.stage.map(st => <Checkpoint stage={st} maxVal={this.state.maxVal}/>)}
+                        {this.state.stage.map(st => <Checkpoint sectionSpace={this.workIt()} stage={st} maxVal={this.state.maxVal}/>)}
                     </div>
                     <div className="timeline"></div>
                     <div className="bottom-timeline"></div>

@@ -10,35 +10,49 @@ export default class Checkpoint extends React.Component {
 
     distance = this.value*(this.containerWidth/this.props.maxVal)
 
+    fill = this.props.sectionSpace[0]*(this.containerWidth/this.props.maxVal)
+
     colorAttr = (attr) => {
-        if (attr == "germinate") {
+        if (attr.includes("germinate")) {
             return "orange"
         } else if (attr.includes("sprouting")) {
             return "pink"
         } else if (attr.includes("harvest")) {
-            return "brown"
+            return "green"
         } else if (attr.includes("maturity")) {
-            return "dark-green"
+            return "darkgreen"
         } else if (attr.includes("pot")) {
             return "brown"
         } else if (attr.includes("protect")) {
-            return "black"
+            return "grey"
         } else if (attr.includes("flowering")) {
             return "yellow"
         } else if (attr.includes("fruiting")) {
             return "red"
         } else if (attr.includes("fertilize")) {
-            return 
+            return "purple"
         } else if (attr.includes("bloom")) {
             return "blue"
         } else if (attr.includes("outside")) {
-            return "green"
+            return "brown"
         }
     }
 
+    componentDidMount() {
+        console.log(this.props.sectionSpace)
+    }
+
+
     render() {
-        return (
-            <div className="checkpoint" style={{left: this.distance, color: this.colorAttr(this.key)}}>{this.key}</div>
-        )
+
+        if (this.key.includes("_f")) {
+            return (
+                <div className="checkpointF" style={{right: (800-this.distance), width: this.fill, backgroundColor: this.colorAttr(this.key), color: this.colorAttr(this.key)}}>{this.key}</div>
+            )
+        } else {
+            return (
+                <div className="checkpointS" style={{left: this.distance, color: this.colorAttr(this.key)}}>{this.key}</div>
+            )
+        }
     }
 }

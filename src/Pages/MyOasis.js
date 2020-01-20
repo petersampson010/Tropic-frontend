@@ -16,6 +16,7 @@ export default class MyOasis extends React.Component {
                 deleteFromGrowlist={this.props.deleteFromGrowlist}
                 user={this.props.user}
                 growingPlantsFeatures={this.props.growingPlantsFeatures}/>
+                
                 <UserPlants 
                 user={this.props.user}
                 addToGrowlist={this.props.addToGrowlist}

@@ -432,11 +432,19 @@ code {
   bottom: 0px;
 }
 
-.checkpoint{
+.checkpointS{
   position: absolute;
   width: 2px;
   height: 60px;
   background-color: black 
+}
+
+.checkpointF{
+  position: absolute;
+  width: 2px;
+  height: 60px;
+  background-color: black;
+  text-align: right;
 }
 
 .user-line{
@@ -444,4 +452,88 @@ code {
   width: 2px;
   height: 60px;
   background-color: red
+}
+
+.page-control{
+  user-select: none;
+  cursor: pointer;
+}
+
+.map-key{
+  display: flex;
+  justify-content: space-evenly;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.836);
+}
+
+.key{
+  display: flex;
+  color: white;
+  margin-top: 5px;
+}
+
+.germinate{
+  background-color: orange;
+  height: 10px;
+  width: 10px;
+}
+
+.sprout{
+  background-color: pink;
+  height: 10px;
+  width: 10px;
+}
+
+.harvest{
+  background-color: green;
+  height: 10px;
+  width: 10px;
+}
+
+.mature{
+  background-color: darkgreen;
+  height: 10px;
+  width: 10px;
+}
+
+.pot{
+  background-color: brown;
+  height: 10px;
+  width: 10px;
+}
+
+.protect{
+  background-color: grey;
+  height: 10px;
+  width: 10px;
+}
+
+.flower{
+  background-color: yellow;
+  height: 10px;
+  width: 10px;
+}
+
+.fruit{
+  background-color: red;
+  height: 10px;
+  width: 10px;
+}
+
+.fertilize{
+  background-color: purple;
+  height: 10px;
+  width: 10px;
+}
+
+.bloom{
+  background-color: blue;
+  height: 10px;
+  width: 10px;
+}
+
+.outside{
+  background-color: brown;
+  height: 10px;
+  width: 10px;
 }
