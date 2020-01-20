@@ -86,11 +86,12 @@ class App extends React.Component {
             }))
     }
 
-    deleteFromWishlist = (e, wish) => {
-        API.deleteWishlist(e, wish)
-            .then(this.setState({user: {...this.state.user, 
+    deleteFromWishlist = (e, userId, plantId) => {
+        API.findWish(userId, plantId)
+            .then(wish => API.deleteWishlist(e, wish)
+                .then(this.setState({user: {...this.state.user, 
                 wishlist_plants: this.state.user.wishlist_plants.filter(p => p.id !== wish.plant_id)}
-            }))
+            })))
     }
 
 

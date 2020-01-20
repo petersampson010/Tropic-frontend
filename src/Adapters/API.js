@@ -88,6 +88,7 @@ const deleteWishlist = (e, wish) => {
     let configObj = {
         method: "DELETE"
     }
+    console.log(wish)
     return fetch(`${WISHLIST_URL}/${wish.id}`, configObj)
 }
 
@@ -110,7 +111,6 @@ const findWish = (userId, plantId) => {
             .then(data => data.filter(w => w.user_id === userId))
             .then(data => data.filter(w => w.plant_id === plantId))
             .then(data => data[0])
-            .then(console.log)
 }
 
 export default {
