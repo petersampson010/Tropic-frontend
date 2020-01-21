@@ -316,8 +316,30 @@ code {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 20%;
-  background-color: white;
+  /* margin-top: 20%; */
+  /* background-color: white; */
+}
+
+.contact-text{
+  width: 50px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.github{
+  background-image: url('./images/github-logo.png');
+  background-size: cover;
+  height: 50px;
+  /* width: auto; */
+}
+
+.linkedIn{
+  background-image: url('./images/linkedin-letters.png');
+  background-size: cover;
+  height: 50px;
+  width: auto;
 }
 
 

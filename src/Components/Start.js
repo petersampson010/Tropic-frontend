@@ -7,6 +7,7 @@ export default class Start extends React.Component {
     }
 
     componentDidMount() {
+
         this.getNumberDays()
     }
 
@@ -28,7 +29,6 @@ export default class Start extends React.Component {
         let day = date.split("-")[2]
         let daysAhead = (360*(year-startYear)) + (30*(month-startMonth)) + (day-startDay)
         console.log(daysAhead)
-        // return daysAhead
         this.setState({growth: daysAhead*this.pixelsPerDay})
     }
 
