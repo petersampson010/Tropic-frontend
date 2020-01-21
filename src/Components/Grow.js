@@ -80,7 +80,7 @@ export default class Grow extends React.Component {
                 {this.state.modal ? <Modal visible={true} className="modal" backgroundColor="red" height="550" width="1000" onClickAway={() => this.removeModal()}>{this.props.user.growlist_plants.filter(p => p.name === this.props.plantF.name)[0].propagation}</Modal> : <button onClick={this.viewRegrowth} >View re-growth of {this.props.plantF.name}</button>}
                 <div className="grow-container">
                     <div className="top-timeline">
-                        <Start startTime={this.props.startTime}/>
+                        <Start maxVal={this.state.maxVal} startTime={this.props.startTime}/>
                         {this.state.stage.map(st => <Checkpoint sectionSpace={this.workIt()} stage={st} maxVal={this.state.maxVal}/>)}
                     </div>
                     <div className="timeline"></div>

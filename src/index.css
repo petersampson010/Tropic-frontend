@@ -17,6 +17,7 @@ code {
 
 #root{
   height: 100vh;
+  background-color: rgb(248, 238, 219);;
 }
 
 
@@ -225,13 +226,14 @@ code {
 
 .search-page{
   height: 100vh;
+  background-color: rgb(248, 238, 219);
 }
 
 .search-items{
   display: flex;
   justify-content: space-around;
   height: 16%;
-  background-color: white;
+  /* background-color: white; */
   padding-top: 5vh;
   text-align: center;
 }
@@ -302,7 +304,7 @@ code {
 .footer{
 
   position: absolute;
-  background-color: white;
+  /* background-color: white; */
   height: 80px;
   left: 85vw;
   width: 14vw;
@@ -315,6 +317,7 @@ code {
   flex-direction: column;
   text-align: center;
   margin-top: 20%;
+  background-color: white;
 }
 
 
@@ -375,7 +378,7 @@ button{
   padding-top: 300px;
   display: flex;
   justify-content: space-between;
-  color: white;
+  color: rgb(250, 231, 195);
 }
 
 .login{
@@ -487,10 +490,11 @@ button{
 }
 
 .map-key{
+  /* opacity: 0.5; */
   display: flex;
   justify-content: space-evenly;
   height: 50px;
-  background-color: rgba(0, 0, 0, 0.836);
+  background-color: rgba(0, 0, 0, 0.536);
 }
 
 .key{

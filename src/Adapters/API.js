@@ -63,7 +63,7 @@ const addToGrowlist = (e, plant, user) => {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify({ user_id: user.id, plant_id: plant.id, start_time: Date.now() })
+        body: JSON.stringify({ user_id: user.id, plant_id: plant.id, start_time: new Date()})
     };
     return fetch(GROWLIST_URL, configObj)
     .then(res => res.json())
