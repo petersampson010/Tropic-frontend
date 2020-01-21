@@ -58,7 +58,6 @@ code {
   height: 20%;
   text-align: center;
   padding-bottom: 10px;
-  /* box-shadow: 1px 1px 2px 1px whitesmoke; */
 }
 
 .slogan{
@@ -318,19 +317,28 @@ code {
 }
 
 .contact-text{
-  width: 50px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 100px 200px;
 
+  display: flex;
+  justify-content: space-evenly
+}
+
+.contact{
+  width: 10vw;
+  height: auto;
+}
+
+.contact-blank{
+  height: 1000px;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.836);
 }
 
 .github{
   background-image: url('./images/github-logo.png');
   background-size: cover;
   height: 50px;
-  /* width: auto; */
+  width: auto;
 }
 
 .linkedIn{
