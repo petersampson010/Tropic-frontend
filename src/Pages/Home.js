@@ -7,21 +7,27 @@ const Home = props => {
 
     return (
         <div className="home">
-            <div className="fake-box"></div>
             <div className="home-box">
                 <h1 className="title">Tropic</h1>
                 <h3 className="slogan">The brighter side of fruit and veg</h3>
                 <div className="home-options">
-                    <div className="card1">
-                        <NavLink to="/search" className="card1t">explore</NavLink>
-                    </div>
-                    <div className="card2">
-                        {props.user ? <p className="card2t" onClick={props.logout}>logout</p>
-                        : <NavLink to="authforms" className="card2t">login</NavLink>}
-                    </div>
-                    <div className="card3">
-                        <NavLink to="/contact-us" className="card3t">contact us</NavLink>
-                    </div>
+                    <NavLink to="/search">
+                        <div className="card1">
+                            <p className="card1t">explore</p>
+                        </div>
+                    </NavLink>
+                    <NavLink to="authforms">
+                        <div className="card2">
+                            {props.user ? <p className="card2t" onClick={props.logout}>logout</p>
+                            : <p className="card2t">login</p>}
+                        </div>
+                    </NavLink>
+                    <NavLink to="/contact-us">
+                        <div className="card3">
+                            <p className="card3t">contact-us</p>
+                        </div>
+                    </NavLink>
+                    
                 </div>
             </div>
         </div>

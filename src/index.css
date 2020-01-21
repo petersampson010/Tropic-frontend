@@ -40,21 +40,11 @@ code {
   margin: 0 auto;
   padding-top: 2%;
   font-family: 'Courier New', Courier, monospace;
+  background-color: rgba(91, 143, 117, 0.5);
   font-size: 20px;
   z-index: 1;
-  position: absolute;
+  position: relative;
   color: rgb(236, 213, 213);
-}
-
-.fake-box{
-  width: 70vw;
-  opacity: 1;
-  margin: 0 auto;
-  padding-top: 2%;
-  background-color: rgb(91, 143, 117);
-  opacity: 0.5;
-  position: absolute;
-  height: 497px;
 }
 
 
@@ -68,31 +58,38 @@ code {
   height: 20%;
   text-align: center;
   padding-bottom: 10px;
-  box-shadow: 0 4px 8px 0 whitesmoke;
+  /* box-shadow: 1px 1px 2px 1px whitesmoke; */
 }
 
 .slogan{
   height: 15%;
   text-align: center;
-  box-shadow: 0 4px 8px 0 whitesmoke;
+  /* box-shadow: 0px 0px 4px 0px whitesmoke; */
 }
 
 .home-options{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 65%;
+  padding-bottom: 30px;
 }
 
 .card1, .card2, .card3 {
   border-radius: 5px;
   width: 190px;
-  height: 200px;
+  height: 250px;
   text-align: center;
   float: left;
   margin: 5%;
   padding-top: 7.5%;
   font-size: 20px;
+  font-weight: bold;
+}
+
+.card1:hover, .card2:hover, .card3:hover{
+  box-shadow: 0 0 4px 0 whitesmoke;
+  font-size: 21px;
 }
 
 .card1{
@@ -117,11 +114,12 @@ code {
 .card2t{
   text-decoration: none;
   color: blue;
+
 }
 
 .card3{
   color: red;
-  background-image: url('./images/floppy-leaves.jpg');
+  background-image: url('./images/butternut-squash.jpg');
   background-size: cover;
 }
 
