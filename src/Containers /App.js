@@ -83,10 +83,11 @@ class App extends React.Component {
         if (this.state.growingPlantsFeatures.length > 3) {
         } else {
             API.addToGrowlist(e, plant, this.state.user)
-            .then(plant => this.setState({
+            .then(growlist => this.setState({
                 user: {
                     ...this.state.user,
-                    growlist_plants: [...this.state.user.growlist_plants, plant]
+                    growlist_plants: [...this.state.user.growlist_plants, growlist.plant],
+                    start_time: [...this.state.user.start_time, growlist.start_time]
                 }
             }))
             .then(() => API.getPlantFeatures(plant.id)
