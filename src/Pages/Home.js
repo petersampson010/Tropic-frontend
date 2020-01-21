@@ -7,6 +7,7 @@ const Home = props => {
 
     return (
         <div className="home">
+            <div className="fake-box"></div>
             <div className="home-box">
                 <h1 className="title">Tropic</h1>
                 <h3 className="slogan">The brighter side of fruit and veg</h3>

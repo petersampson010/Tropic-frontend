@@ -69,7 +69,7 @@ class App extends React.Component {
     addToWishlist = (e, plant) => {
         if (this.state.user.wishlist_plants > 8) {
         } else {
-            API.updateList(e, plant, this.state.user, WISHLIST_URL)        
+            API.addToWishlist(e, plant, this.state.user)        
             .then(plant => this.setState({
                 user: {
                     ...this.state.user,
@@ -80,9 +80,9 @@ class App extends React.Component {
     }
 
     addToGrowlist = (e, plant) => {
-        if (this.state.growingPlantsFeatures.length > 5) {
+        if (this.state.growingPlantsFeatures.length > 3) {
         } else {
-            API.updateList(e, plant, this.state.user, GROWLIST_URL)
+            API.addToGrowlist(e, plant, this.state.user)
             .then(plant => this.setState({
                 user: {
                     ...this.state.user,

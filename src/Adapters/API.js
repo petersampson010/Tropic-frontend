@@ -41,7 +41,7 @@ const check = (data) => {
     // console.log(data)
 }
 
-const updateList = (e, plant, user, list) => {
+const addToWishlist = (e, plant, user) => {
     e.preventDefault();
     let configObj = {
         method: "POST",
@@ -51,7 +51,21 @@ const updateList = (e, plant, user, list) => {
         },
         body: JSON.stringify({ user_id: user.id, plant_id: plant.id })
     };
-    return fetch(list, configObj)
+    return fetch(WISHLIST_URL, configObj)
+    .then(res => res.json())
+}
+
+const addToGrowlist = (e, plant, user) => {
+    e.preventDefault();
+    let configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({ user_id: user.id, plant_id: plant.id, start_time: Date.now() })
+    };
+    return fetch(GROWLIST_URL, configObj)
     .then(res => res.json())
 }
 
@@ -128,13 +142,10 @@ const findWish = (userId, plantId) => {
 }
 
 const findGrow = (userId, plantId) => {
-    // console.log(plantId)
-    // console.log(userId)
     return fetch(GROWLIST_URL)
         .then(res => res.json())
         .then(data => data.filter(g => g.user_id === userId))
         .then(data => data.filter(g => g.plant_id === plantId))
-        // .then(console.log)
         .then(data => data[0])
 }
 
@@ -147,7 +158,8 @@ export default {
     login, 
     signUp,
     validateUser,
-    updateList,
+    addToWishlist,
+    addToGrowlist,
     fetchPF,
     fetchPlants,
     deleteWishlist,

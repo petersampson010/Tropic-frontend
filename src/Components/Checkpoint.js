@@ -47,7 +47,7 @@ export default class Checkpoint extends React.Component {
 
         if (this.key.includes("_f")) {
             return (
-                <div className="checkpointF" style={{right: (800-this.distance), width: this.fill, backgroundColor: this.colorAttr(this.key), color: this.colorAttr(this.key)}}>{this.key}</div>
+                <div className="checkpointF" style={{right: (800-this.distance), width: this.fill, backgroundColor: this.colorAttr(this.key), color: this.colorAttr(this.key)}}></div>
             )
         } else {
             return (

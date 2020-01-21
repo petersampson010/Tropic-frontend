@@ -38,10 +38,24 @@ code {
   width: 70vw;
   margin: 0 auto;
   padding-top: 2%;
-  background-color: rgb(91, 143, 117);
   font-family: 'Courier New', Courier, monospace;
   font-size: 20px;
+  z-index: 1;
+  position: absolute;
+  color: rgb(236, 213, 213);
 }
+
+.fake-box{
+  width: 70vw;
+  opacity: 1;
+  margin: 0 auto;
+  padding-top: 2%;
+  background-color: rgb(91, 143, 117);
+  opacity: 0.5;
+  position: absolute;
+  height: 497px;
+}
+
 
 .space{
   height: 4vh;
@@ -49,14 +63,17 @@ code {
 
 .title{
   display: block;
+  opacity: 2;
   height: 20%;
   text-align: center;
   padding-bottom: 10px;
+  box-shadow: 0 4px 8px 0 whitesmoke;
 }
 
 .slogan{
   height: 15%;
   text-align: center;
+  box-shadow: 0 4px 8px 0 whitesmoke;
 }
 
 .home-options{
@@ -439,6 +456,7 @@ button{
 .bottom-timeline{
   height: 57px;
   bottom: 0px;
+  text-align: right;
 }
 
 .checkpointS{

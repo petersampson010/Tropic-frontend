@@ -13,16 +13,12 @@ const MapKey = () => {
                 <div className="germinate"></div>
             </div>
             <div className="key">
+                <p>Fertilize</p>
+                <div className="fertilize"></div>
+            </div>
+            <div className="key">
                 <p>Sprout</p>
                 <div className="sprout"></div>
-            </div>
-            <div className="key">
-                <p>Harvest</p>
-                <div className="harvest"></div>
-            </div>
-            <div className="key">
-                <p>Mature</p>
-                <div className="mature"></div>
             </div>
             <div className="key">
                 <p>Pot</p>
@@ -33,6 +29,14 @@ const MapKey = () => {
                 <div className="protect"></div>
             </div>
             <div className="key">
+                <p>Bloom</p>
+                <div className="bloom"></div>
+            </div>
+            <div className="key">
+                <p>Outside</p>
+                <div className="outside"></div>
+            </div>
+            <div className="key">
                 <p>Flower</p>
                 <div className="flower"></div>
             </div>
@@ -41,20 +45,12 @@ const MapKey = () => {
                 <div className="fruit"></div>
             </div>
             <div className="key">
-                <p>Fertilize</p>
-                <div className="fertilize"></div>
-            </div>
-            <div className="key">
-                <p>Bloom</p>
-                <div className="bloom"></div>
-            </div>
-            <div className="key">
                 <p>Harvest</p>
                 <div className="harvest"></div>
             </div>
             <div className="key">
-                <p>Ready to go outside</p>
-                <div className="outside"></div>
+                <p>Mature</p>
+                <div className="mature"></div>
             </div>
         </div>
     )
