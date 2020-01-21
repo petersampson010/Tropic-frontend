@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NavBar from '../Components/NavBar'
+import Footer from '../Components/Footer'
 
 const AuthForms = ({ login, signUp, error }) => {
   const [loginData, setLoginData] = useState({});
@@ -31,6 +33,7 @@ const AuthForms = ({ login, signUp, error }) => {
   
   return (
     <div className="auth-background">
+      <NavBar/>
       <div className="auth-forms">
         <div className="login">
           <form onSubmit={handleLoginSubmit}>

@@ -78,7 +78,18 @@ export default class Grow extends React.Component {
         console.log(this.props.startTime)
         return (
             <div className="grow">
-                {this.state.modal ? <Modal visible={true} className="modal" backgroundColor="red" height="550" width="1000" onClickAway={() => this.removeModal()}>{this.props.user.growlist_plants.filter(p => p.name === this.props.plantF.name)[0].propagation}</Modal> : <button onClick={this.viewRegrowth} >View re-growth of {this.props.plantF.name}</button>}
+                {this.state.modal ? 
+                <Modal visible={true} height="auto" width="400" onClickAway={() => this.removeModal()}>
+                    <div className="prop-modal">
+                        {this.props.user.growlist_plants.filter(p => p.name === this.props.plantF.name)[0].propagation}
+                    </div>
+                </Modal> 
+                : <button className="regrowth-div" onClick={this.viewRegrowth}>
+                        <h8 className="regrowth-header">
+                            {this.props.plantF.name}
+                        </h8>
+                        <p className="regrowth-para">Click to see how to re-grow</p>
+                </button>}
                 <div className="grow-container">
                     <div className="top-timeline">
                         <Start maxVal={this.state.maxVal} startTime={this.props.startTime}/>
@@ -89,7 +100,9 @@ export default class Grow extends React.Component {
                     {this.state.maxVal} Months
                     </div>
                 </div>
-                <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>Remove from growing</button>
+                <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>
+                    Remove from your Oasis
+                </button>
             </div>
         )
     }

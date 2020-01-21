@@ -49,11 +49,14 @@ export default class WishItem extends React.Component {
 
         return (
             <div className="wish-item">
-                {this.state.modal ? <Modal className="modal" visible={this.state.modal} width="1000" height="550" effect="fadeInUp" onClickAway={() => this.closeModal()}>
-                    <div>
-                        <h5>{this.props.plant.name}</h5>
-                        {attributes.map(att => <p>{this.state.attributes[att] ? <div><p onClick={() => this.unToggleAttribute(att)}>{att}<div className="arrow">↟</div></p><div>{this.props.plant[att]}</div></div> : <p onClick={() => this.toggleAttribute(att)}>{att}<div className="arrow">↡</div></p>}</p>)}
-                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                {this.state.modal ? <Modal visible={this.state.modal}  width="900" height="auto" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+                    <div className="modal">
+                        <div className="modal-text">
+                            <h5 className="plant-header">{this.props.plant.name}</h5>
+                            {attributes.map(att => <p>{this.state.attributes[att] ? <div><p onClick={() => this.unToggleAttribute(att)}>{att}<div className="arrow">↟</div></p><div>{this.props.plant[att]}</div></div> : <p onClick={() => this.toggleAttribute(att)}>{att}<div className="arrow">↡</div></p>}</p>)}
+                            <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                        </div>
+                        <div className="plant-pic"><img className="plant-img" src={this.props.plant.img_url}/></div>
                     </div>
                 </Modal>
                 :   <ul>
