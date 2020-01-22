@@ -97,9 +97,10 @@ export default class Grow extends React.Component {
                     </div>
                     <div className="timeline"></div>
                     <div className="bottom-timeline">
-                    {this.state.maxVal} Months
+                    
                     </div>
                 </div>
+                <div className="total-length">{this.state.maxVal} Months</div>
                 <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>
                     Remove from your Oasis
                 </button>

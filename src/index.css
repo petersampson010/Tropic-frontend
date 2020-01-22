@@ -418,6 +418,10 @@ button{
   font-size: 10px;
 }
 
+.total-length{
+  color: rgb(245, 216, 161);
+}
+
 .modal{
   text-align: center;
   display: flex;
