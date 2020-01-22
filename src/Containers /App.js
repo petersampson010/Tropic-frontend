@@ -26,7 +26,23 @@ class App extends React.Component {
 
     componentDidMount() {
         this.fetchPlants()
+        // console.log(localStorage.token)
+        // this.validateUser()
     }
+
+    // validateUser = () => {
+    //     if (localStorage.token) {
+    //         fetch(VALIDATE_URL, {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 Accept: "application/json",
+    //                 Authorization: `bearer ${localStorage.token}`
+    //             }
+    //         })
+    //         .then(res => res.json())
+    //         .then(console.log)
+    //     }
+    // }
 
     fetchPlantFeatures = () => {
         const plant_names = this.state.user.growlist_plants.map(pl => pl.name)

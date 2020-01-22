@@ -20,7 +20,7 @@ export default class Checkpoint extends React.Component {
         } else if (attr.includes("harvest")) {
             return "green"
         } else if (attr.includes("maturity")) {
-            return "darkgreen"
+            return "cyan"
         } else if (attr.includes("pot")) {
             return "brown"
         } else if (attr.includes("protect")) {
