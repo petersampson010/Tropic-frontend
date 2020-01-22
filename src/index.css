@@ -372,11 +372,15 @@ button{
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  font-family: 'Courier New', Courier, monospace;
+
 }
 
 .wish-item{
   color: rgb(245, 216, 161);
   height: 70px;
+  font-family: 'Courier New', Courier, monospace;
+
 }
 
 .wish-item:hover{
@@ -534,7 +538,7 @@ button{
 .grow-container{
   position: relative;
   background-color: white;
-  width: 800px;
+  width: 950px;
   display: flex;
   flex-direction: column;
   justify-content: center;

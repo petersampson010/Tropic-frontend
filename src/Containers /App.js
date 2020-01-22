@@ -96,6 +96,7 @@ class App extends React.Component {
     }
 
     addToGrowlist = (e, plant) => {
+        // debugger
         if (this.state.growingPlantsFeatures.length > 3) {
         } else {
             API.addToGrowlist(e, plant, this.state.user)
@@ -120,6 +121,7 @@ class App extends React.Component {
     }
 
     deleteFromGrowlist = (e, userId, plantId) => {
+        debugger
         API.findGrow(userId, plantId)
             .then(grow => API.deleteGrow(e, grow)
                 .then(this.setState({user: {...this.state.user, 

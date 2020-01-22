@@ -67,6 +67,7 @@ const addToGrowlist = (e, plant, user) => {
     };
     return fetch(GROWLIST_URL, configObj)
     .then(res => res.json())
+    // .then(console.log)
 }
 
 const fetchPF = () => {
