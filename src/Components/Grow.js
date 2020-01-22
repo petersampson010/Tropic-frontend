@@ -12,15 +12,38 @@ export default class Grow extends React.Component {
         maxVal: null,
         prop: false,
         sections: [],
-        modal: false
+        modal: false,
+        keys: [],
+        values: []
     }
 
+
+    fill = stage => {
+        let key = Object.keys(stage)[0];
+        let value = Object.values(stage)[0]
+        console.log(key)
+        let sortedVals = this.state.values.sort()
+        // console.log(sortedVals)
+        let index = sortedVals.indexOf(value)
+        console.log(index)
+        if (key.includes("_s")) {
+            if ((this.state.keys.filter(k => k.includes(key.slice(-1))).length) > 1) {
+                // console.log(sortedVals)
+                return (this.state.values[index+1] - this.state.values[index])
+            } else {
+                return 20
+            }
+        } else {
+            return 0
+        }
+    }
 
     // pf = plant feature
 
     
     setGrowthStages = () => {
 
+        let valuesArray = []
         let objArray = []
         let objKeys = Object.keys(this.props.plantF)
         let newObj = objKeys.filter(ok => this.props.plantF[ok]  !== null )
@@ -28,12 +51,15 @@ export default class Grow extends React.Component {
         let new2 = new1.filter(ok => ok !== "name")
         let new3 = new2.filter(ok => ok !== "created_at")
         let new4 = new3.filter(ok => ok !== "updated_at")
+        console.log(new4)
         new4.map(ok => {
             let obj = {}
             obj[ok] = this.props.plantF[ok];
+            valuesArray.push(this.props.plantF[ok]);
             objArray.push(obj)
         })
-        this.setState({stage: objArray});
+        console.log(valuesArray)
+        this.setState({stage: objArray, keys: new4, values: valuesArray});
         this.setMaxVal(objArray)
     }
 
@@ -93,14 +119,14 @@ export default class Grow extends React.Component {
                 <div className="grow-container">
                     <div className="top-timeline">
                         <Start maxVal={this.state.maxVal} startTime={this.props.startTime}/>
-                        {this.state.stage.map(st => <Checkpoint sectionSpace={this.workIt()} stage={st} maxVal={this.state.maxVal}/>)}
+                        {this.state.stage.map(st => <Checkpoint fill={this.fill} sectionSpace={this.workIt()} stage={st} maxVal={this.state.maxVal}/>)}
                     </div>
                     <div className="timeline"></div>
                     <div className="bottom-timeline">
                     
                     </div>
                 </div>
-                <div className="total-length">{this.state.maxVal} Months</div>
+                <div className="total-length">{this.state.maxVal} Month(s)</div>
                 <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>
                     Remove from your Oasis
                 </button>

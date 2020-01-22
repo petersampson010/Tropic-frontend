@@ -152,18 +152,13 @@ class App extends React.Component {
     }
 
     nextPage = () => {
-        this.state.num > this.state.searchedPlants.length - 3 ? 
-            this.setState({shownPlants: this.state.searchedPlants.slice(2), 
-            num: 0})
-            : this.setState({shownPlants: this.state.searchedPlants.slice(this.state.num + 3, this.state.num + 6), 
-            num: this.state.num + 3}) 
+        return this.state.num > 96 ? null : this.setState({shownPlants: this.state.searchedPlants.slice(this.state.num + 3, this.state.num + 6), num: this.state.num + 3}) 
     }
 
     prevPage = () => {
-        this.state.num < 3 ?
-        this.setState({shownPlants: this.state.searchedPlants.slice(-3), num: this.state.searchedPlants.length - 2})
-        : this.setState({shownPlants: this.state.searchedPlants.slice(this.state.num - 3, this.state.num), 
-            num: this.state.num - 3});
+        return this.state.num < 1 ? null 
+        : (this.state.num < 3 ? this.setState({shownPlants: this.state.searchedPlants.slice(0, 3), num: 0}) : this.setState({shownPlants: this.state.searchedPlants.slice(this.state.num - 3, this.state.num), 
+        num: this.state.num - 3}))
     }
 
 
@@ -189,6 +184,7 @@ class App extends React.Component {
                 user={this.state.user} 
                 logout={this.logout}/>}/>
                 <Route exact path="/search" render={() => <SearchPage
+                    num={this.state.num}
                     nextPage={this.nextPage}
                     prevPage={this.prevPage}
                     logout={this.logout}

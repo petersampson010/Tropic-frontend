@@ -10,7 +10,9 @@ export default class Checkpoint extends React.Component {
 
     distance = this.value*(this.containerWidth/this.props.maxVal)
 
-    fill = this.props.sectionSpace[0]*(this.containerWidth/this.props.maxVal)
+    // fill = this.props.sectionSpace[0]*(this.containerWidth/this.props.maxVal)
+    
+    
 
     colorAttr = (attr) => {
         if (attr.includes("germinate")) {
@@ -39,20 +41,33 @@ export default class Checkpoint extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.sectionSpace)
+        console.log(this.props.stage)
+    }
+
+    fill = () => {
+        let width = this.props.fill(this.props.stage)
+        width = width*(this.containerWidth/this.props.maxVal)
+        // console.log(width)
+        return width
     }
 
 
     render() {
 
-        if (this.key.includes("_f")) {
-            return (
-                <div className="checkpointF" style={{right: (800-this.distance), width: this.fill, backgroundColor: this.colorAttr(this.key), color: this.colorAttr(this.key)}}></div>
-            )
-        } else {
-            return (
-                <div className="checkpointS" style={{left: this.distance, width: "10px", backgroundColor: this.colorAttr(this.key)}}></div>
-            )
-        }
+
+
+        return (
+            <div className="checkpoint" style={{right: (800-this.distance), width: this.fill(), backgroundColor: this.colorAttr(this.key)}}></div>
+        )
+
+        // if (this.key.includes("_f")) {
+        //     return (
+        //         <div className="checkpointF" style={{right: (800-this.distance), width: this.fill, backgroundColor: this.colorAttr(this.key), color: this.colorAttr(this.key)}}></div>
+        //     )
+        // } else {
+        //     return (
+        //         <div className="checkpointS" style={{left: this.distance, width: "10px", backgroundColor: this.colorAttr(this.key)}}></div>
+        //     )
+        // }
     }
 }

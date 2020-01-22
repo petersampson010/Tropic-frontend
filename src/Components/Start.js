@@ -18,6 +18,11 @@ export default class Start extends React.Component {
     timeDifference = new Date() - this.props.startTime
 
     getNumberDays = () => {
+        return this.props.startTime === null ? null 
+        : this.getNumber()
+    }
+    
+    getNumber = () => {
         let startDate = this.props.startTime.split("T")[0]
         let startYear = startDate.split("-")[0]
         let startMonth = startDate.split("-")[1]
