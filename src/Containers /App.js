@@ -59,14 +59,22 @@ class App extends React.Component {
             .then(() => this.setState({shownPlants: this.state.searchedPlants.slice(rand, rand + 3)}))
     }
 
+    capitalize = (input) => {
+        return (input.charAt(0).toUpperCase() + input.slice(1))
+    }
+
+    uncapitalize = (input) => {
+        return (input.charAt(0).toLowerCase() + input.slice(1))
+    }
+
     updateSearchedPlants = (attr, userInput) => {
-        let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput);
+        let searchWord = (attr === "name" ? this.capitalize(userInput) : this.uncapitalize(userInput));
         this.setState({searchedPlants: this.state.allPlants.filter(pl => pl[attr].includes(searchWord))});
         this.updateShownPlants(attr, userInput);
     }
 
     updateShownPlants = (attr, userInput) => {
-        let searchWord = (attr === "name" ? (userInput.charAt(0).toUpperCase() + userInput.slice(1)) : userInput);
+        let searchWord = (attr === "name" ? this.capitalize(userInput) : this.uncapitalize(userInput));
         this.setState({shownPlants: (this.state.allPlants.filter(pl => pl[attr].includes(searchWord))).slice(0, 3), num: 0});
     }
 
@@ -96,7 +104,6 @@ class App extends React.Component {
     }
 
     addToGrowlist = (e, plant) => {
-        // debugger
         if (this.state.growingPlantsFeatures.length > 3) {
         } else {
             API.addToGrowlist(e, plant, this.state.user)
