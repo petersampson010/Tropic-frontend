@@ -39,7 +39,11 @@ const SearchPage = props => {
                     <p>Name</p>
                 </div>
             </div>
-            <div className="select-search">{props.searchSelection === null ? "Select a category to search by" : `Currently searching by ${props.searchSelection}`}</div>
+            <div className="search-by">
+                <div className="select-search">{props.searchSelection === null ? "Select a category to search by ↟" : `Currently searching by ${props.searchSelection}`}</div>
+                or
+                <div className="search-all" onClick={props.searchAll}>Search all Plants</div>
+            </div>
             <div>
                 <SearchBar 
                 searchedPlants={props.searchedPlants}

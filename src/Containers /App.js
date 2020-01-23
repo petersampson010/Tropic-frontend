@@ -78,6 +78,10 @@ class App extends React.Component {
         this.setState({shownPlants: (this.state.allPlants.filter(pl => pl[attr].includes(searchWord))).slice(0, 3), num: 0});
     }
 
+    searchAll = () => {
+        this.updateSearchedPlants("name", "")
+    }
+
 
     searchFV = e => {
         e.preventDefault();
@@ -128,7 +132,6 @@ class App extends React.Component {
     }
 
     deleteFromGrowlist = (e, userId, plantId) => {
-        debugger
         API.findGrow(userId, plantId)
             .then(grow => API.deleteGrow(e, grow)
                 .then(this.setState({user: {...this.state.user, 
@@ -191,7 +194,8 @@ class App extends React.Component {
                 user={this.state.user} 
                 logout={this.logout}/>}/>
                 <Route exact path="/search" render={() => <SearchPage
-                searchedPlants=                     {this.state.searchedPlants}
+                    searchAll={this.searchAll}
+                    searchedPlants={this.state.searchedPlants}
                     num={this.state.num}
                     nextPage={this.nextPage}
                     prevPage={this.prevPage}
