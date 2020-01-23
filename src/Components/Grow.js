@@ -2,6 +2,8 @@ import React from 'react'
 import Checkpoint from './Checkpoint'
 import Start from './Start'
 import Modal from 'react-awesome-modal'
+import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -127,10 +129,13 @@ export default class Grow extends React.Component {
                     </div>
                 </div>
                 <div className="total-length">{this.state.maxVal} Month(s)</div>
-                <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>
-                    Remove from your Oasis
-                </button>
+                <FontAwesomeIcon className="search-icon" icon={faTrash} size="3x" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}/>
+                
             </div>
         )
     }
 }
+
+{/* <button className="delete-grow" onClick={(e) => this.props.deleteFromGrowlist(e, this.props.user.id, this.props.plantF.id)}>
+                    <FontAwesomeIcon icon={faTrash} size="3x"/>
+                </button> */}

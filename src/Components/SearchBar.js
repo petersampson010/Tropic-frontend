@@ -11,7 +11,7 @@ export default class SearchBar extends React.Component {
                     <input name="plantsearch"/>
                     <input type="submit" value="Search"/>
                 </form>}
-                {this.props.num > 96 ? <div></div> : <div onClick={this.props.nextPage} className="page-control">Next Plants</div>}
+                {this.props.num > (this.props.searchedPlants.length - 3) ? <div></div> : <div onClick={this.props.nextPage} className="page-control">Next Plants</div>}
             </div>
         )
     }

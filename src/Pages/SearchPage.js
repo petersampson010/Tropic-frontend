@@ -19,29 +19,30 @@ const SearchPage = props => {
             <NavBar logout={props.logout} user={props.user}/>
             <div className="search-items">
                 <div>
-                    <FontAwesomeIcon icon={faHeartbeat} size="4x" onClick={(e) => props.updateSearchSelection(e, "health")}/>
+                    <FontAwesomeIcon className="search-icon" icon={faHeartbeat} size="4x" onClick={(e) => props.updateSearchSelection(e, "health")}/>
                     <p>Health</p>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faSeedling} size="4x" onClick={(e) => props.updateSearchSelection(e, "soil")}/>
+                    <FontAwesomeIcon className="search-icon" icon={faSeedling} size="4x" onClick={(e) => props.updateSearchSelection(e, "soil")}/>
                     <p>Soil</p>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faPepperHot} size="4x" onClick={(e) => props.updateSearchSelection(e, "uses")}/>
+                    <FontAwesomeIcon className="search-icon" icon={faPepperHot} size="4x" onClick={(e) => props.updateSearchSelection(e, "uses")}/>
                     <p>Uses</p>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faSun} size="4x" onClick={(e) => props.updateSearchSelection(e, "climate")}/>
+                    <FontAwesomeIcon className="search-icon" icon={faSun} size="4x" onClick={(e) => props.updateSearchSelection(e, "climate")}/>
                     <p>Climate</p>
                 </div>
                 <div>
-                    <FontAwesomeIcon icon={faFont} size="4x" onClick={(e) => props.updateSearchSelection(e, "name")}/>
+                    <FontAwesomeIcon className="search-icon" icon={faFont} size="4x" onClick={(e) => props.updateSearchSelection(e, "name")}/>
                     <p>Name</p>
                 </div>
             </div>
             <div className="select-search">{props.searchSelection === null ? "Select a category to search by" : `Currently searching by ${props.searchSelection}`}</div>
             <div>
                 <SearchBar 
+                searchedPlants={props.searchedPlants}
                 num={props.num}
                 searchSelection={props.searchSelection}
                 searchFV={props.searchFV}

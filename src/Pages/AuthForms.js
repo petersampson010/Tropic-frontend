@@ -36,45 +36,45 @@ const AuthForms = ({ login, signUp, error }) => {
       <NavBar/>
       <div className="auth-forms">
         <div className="login">
-          <form onSubmit={handleLoginSubmit}>
+          <form  onSubmit={handleLoginSubmit}>
             <h2>log in</h2>
-            <input
+            <input className="form"
               type="username"
               name="username"
               placeholder="Username"
               onChange={handleLoginChange}
             />
-            <input
+            <input className="form"
               type="password"
               name="password"
               placeholder="Password"
               onChange={handleLoginChange}
             />
-            <input type="submit" />
+            <input type="submit" className="form-button"/>
           </form>
         </div>
         <div className="sign-up">
           <form onSubmit={handleSignupSubmit}>
             <h2>sign up</h2>
-            <input
+            <input className="form"
               type="username"
               name="username"
               placeholder="Username"
               onChange={handleSignupChange}
             />
-            <input
+            <input className="form"
               type="password"
               name="password"
               placeholder="Password"
               onChange={handleSignupChange}
             />
-            <input
+            <input className="form"
               type="password"
               name="password_confirmation"
               placeholder="Password confirmation"
               onChange={handleSignupChange}
             />
-            <input type="submit" />
+            <input type="submit" className="form-button"/>
           </form>
         </div>
       </div>
