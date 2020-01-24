@@ -13,8 +13,8 @@ const ContactUs = props => {
             <NavBar/>
             <Footer/>
             <div className="contact-text">
-                <a href="https://github.com/petersampson010"><img src={github} className="contact"/></a>
-                <a href="https://www.linkedin.com/in/peter-sampson-86ab05145/"><img src={linkedin} className="contact"/></a>
+                <a href="https://github.com/petersampson010" target="_blank"><img src={github} className="contact"/></a>
+                <a href="https://www.linkedin.com/in/peter-sampson-86ab05145/" target="_blank"><img src={linkedin} className="contact"/></a>
             </div>
         </div>
         <div className="contact-blank"></div>

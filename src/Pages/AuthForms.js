@@ -68,12 +68,12 @@ const AuthForms = ({ login, signUp, error }) => {
               placeholder="Password"
               onChange={handleSignupChange}
             />
-            <input className="form"
+            {/* <input className="form"
               type="password"
               name="password_confirmation"
               placeholder="Password confirmation"
               onChange={handleSignupChange}
-            />
+            /> */}
             <input type="submit" className="form-button"/>
           </form>
         </div>

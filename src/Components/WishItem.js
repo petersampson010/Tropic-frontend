@@ -63,8 +63,8 @@ export default class WishItem extends React.Component {
                         <li className="list-item">
                             <div>
                                 <p onClick={this.openModal}>{this.props.plant.name}</p>
-                                <button onClick={(e) => this.props.addToGrowlist(e, this.props.plant)}>Add to "Growing"</button>
-                                <button onClick={(e) => this.props.deleteFromWishlist(e, this.props.user.id, this.props.plant.id)}>Delete</button>
+                                <button onClick={(e) => this.props.addToGrowlist(e, this.props.plant)}>Grow Plant</button>
+                                <button onClick={(e) => this.props.deleteFromWishlist(e, this.props.user.id, this.props.plant.id)}>Remove</button>
                             </div>
                         </li>
                     </ul>}

@@ -76,6 +76,7 @@ const fetchPF = () => {
 }
 
 const signUp = signupData => {
+    
     return fetch(USERS_URL, {
         method: "POST",
         headers: {

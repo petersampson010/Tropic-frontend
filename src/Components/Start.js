@@ -13,7 +13,7 @@ export default class Start extends React.Component {
 
     containerWidth = 800
 
-    pixelsPerDay = parseFloat(this.containerWidth/(this.props.maxVal*30))
+    pixelsPerDay = (this.containerWidth/(this.props.maxVal*30))
 
     timeDifference = new Date() - this.props.startTime
 

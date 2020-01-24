@@ -148,7 +148,7 @@ code {
   background-color: rgba(0, 0, 0, 0.836);
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  width: 85vw;
+  width: 90vw;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -260,7 +260,7 @@ code {
 }
 
 .search-results{
-  height: 460px;
+  height: 760px;
   background-color: rgba(0, 0, 0, 0.836);
 }
 
@@ -318,8 +318,8 @@ code {
 
   position: absolute;
   height: 80px;
-  left: 85vw;
-  width: 14vw;
+  left: 90vw;
+  width: 9vw;
   font-size: 10px;
   text-align: right;
 }
@@ -372,7 +372,7 @@ button{
 }
 
 .user-plants{
-  height: 370px;
+  height: 300px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -561,7 +561,7 @@ button{
 /* *****GROW****** */
 
 .grow-graphic{
-  height: 500px;
+  height: 660px;
   background-image: url('../src/images/small-leaf.jpeg');
   background-size: cover;
   display: flex;
@@ -622,7 +622,7 @@ button{
   position: absolute;
   width: 2px;
   height: 60px;
-  background-color: red
+  background-color: black
 }
 
 .page-control{
